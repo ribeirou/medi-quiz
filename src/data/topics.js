@@ -43,7 +43,7 @@ export const topicsBySubject = {
     { name: 'Glicólise e Metabolismo de Carboidratos', icon: '🍬', ids: ['bioq-1', 'bioq-2', 'bioq-7', 'bioq-8', 'bioq-9', 'bioq-10'] },
     { name: 'Ciclo de Krebs e Cadeia Respiratória', icon: '⚡', ids: ['bioq-3', 'bioq-4', 'bioq-5', 'bioq-6', 'bioq-11', 'bioq-27', 'bioq-28', 'bioq-29', 'bioq-30'] },
     { name: 'Proteínas e Enzimas', icon: '🧬', ids: ['bioq-12', 'bioq-13', 'bioq-15', 'bioq-17', 'bioq-18', 'bioq-19', 'bioq-20'] },
-    { name: 'Lipídeos e Vitaminas', icon: '💊', ids: ['bioq-14', 'bioq-16', 'bioq-31', 'bioq-32', 'bioq-33'] },
+    { name: 'Lipídeos e Vitaminas', icon: '💊', ids: ['bioq-14', 'bioq-16', 'bioq-31', 'bioq-32', 'bioq-33', 'bioq-34', 'bioq-35', 'bioq-36', 'bioq-37', 'bioq-38', 'bioq-39'] },
     { name: 'Ácidos Nucleicos', icon: '🧬', ids: ['bioq-21', 'bioq-22', 'bioq-23', 'bioq-24', 'bioq-25', 'bioq-26'] },
   ],
   embriologia: [
