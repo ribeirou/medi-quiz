@@ -3,7 +3,7 @@
 export const topicsBySubject = {
   anatomia: [
     { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38'] },
-    { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31'] },
+    { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64'] },
     { name: 'Sistema Nervoso', icon: '🧠', ids: ['anat-2', 'anat-11', 'anat-12', 'anat-15', 'anat-17', 'anat-18', 'anat-19', 'anat-32', 'anat-33', 'anat-36'] },
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
     { name: 'Sistema Osteoarticular e Muscular', icon: '🦴', ids: ['anat-1', 'anat-3', 'anat-20', 'anat-21', 'anat-23', 'anat-24', 'anat-25', 'anat-26', 'anat-27', 'anat-34', 'anat-35', 'anat-44', 'anat-45', 'anat-46', 'anat-47', 'anat-48', 'anat-49'] },
@@ -22,6 +22,7 @@ export const topicsBySubject = {
     { name: 'Sistema Endócrino', icon: '⚙️', ids: ['histo-31', 'histo-32', 'histo-33'] },
     { name: 'Sistema Digestório e Glândulas', icon: '🍽️', ids: ['histo-29', 'histo-30', 'histo-34', 'histo-35', 'histo-36'] },
     { name: 'Sistema Reprodutor', icon: '🌸', ids: ['histo-37', 'histo-38', 'histo-39'] },
+    { name: 'Sistema Respiratório', icon: '🫁', ids: ['histo-40', 'histo-41', 'histo-42', 'histo-43', 'histo-44', 'histo-45', 'histo-46', 'histo-47'] },
   ],
   fisiologia: [
     { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9'] },
