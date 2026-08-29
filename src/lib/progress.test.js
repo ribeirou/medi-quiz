@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { getWrongIds, getWrongQuestions, recordAnswer } from './progress.js'
+import { getDueQuestions, getWrongIds, getWrongQuestions, recordAnswer } from './progress.js'
 
 function createLocalStorageMock() {
   let store = {}
@@ -57,5 +57,58 @@ describe('getWrongQuestions', () => {
 
   it('returns an empty array when there are no wrong answers for the subject', () => {
     expect(getWrongQuestions('anatomia', allQuestions)).toEqual([])
+  })
+})
+
+describe('spaced repetition (SRS)', () => {
+  const allQuestions = [
+    { id: 'anat-1', subject: 'anatomia', question: 'Q1' },
+    { id: 'histo-1', subject: 'histologia', question: 'Q2' },
+  ]
+
+  it('sets intervalIndex to 0 when answered incorrectly', () => {
+    recordAnswer('anatomia', 'anat-1', false)
+    const srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    expect(srs['anat-1'].intervalIndex).toBe(0)
+  })
+
+  it('advances intervalIndex on consecutive correct answers, capped at the last rung', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    let srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    expect(srs['anat-1'].intervalIndex).toBe(0)
+
+    recordAnswer('anatomia', 'anat-1', true)
+    srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    expect(srs['anat-1'].intervalIndex).toBe(1)
+
+    for (let i = 0; i < 10; i++) recordAnswer('anatomia', 'anat-1', true)
+    srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    expect(srs['anat-1'].intervalIndex).toBe(4)
+  })
+
+  it('resets intervalIndex to 0 after a wrong answer following a correct streak', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    recordAnswer('anatomia', 'anat-1', true)
+    recordAnswer('anatomia', 'anat-1', false)
+    const srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    expect(srs['anat-1'].intervalIndex).toBe(0)
+  })
+
+  it('getDueQuestions excludes questions never answered', () => {
+    expect(getDueQuestions(allQuestions)).toEqual([])
+  })
+
+  it('getDueQuestions excludes answered questions whose dueDate is in the future', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    expect(getDueQuestions(allQuestions)).toEqual([])
+  })
+
+  it('getDueQuestions includes answered questions whose dueDate has passed', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    const srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    srs['anat-1'].dueDate = '2000-01-01'
+    localStorage.setItem('medi-quiz-srs', JSON.stringify(srs))
+
+    expect(getDueQuestions(allQuestions)).toEqual([allQuestions[0]])
   })
 })

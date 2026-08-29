@@ -4,6 +4,8 @@ const STREAK_KEY = 'medi-quiz-streak'
 const DRAFTS_KEY = 'medi-quiz-drafts'
 const ANSWERED_KEY = 'medi-quiz-answered'
 const WRONG_KEY = 'medi-quiz-wrong'
+const SRS_KEY = 'medi-quiz-srs'
+const SRS_INTERVALS_DAYS = [1, 3, 7, 16, 35]
 
 function readJSON(key, fallback) {
   try {
@@ -38,6 +40,7 @@ export function recordAnswer(subjectId, questionId, wasCorrect) {
   } else {
     markWrong(subjectId, questionId)
   }
+  updateSRS(questionId, wasCorrect)
   bumpStreak()
 }
 
@@ -121,4 +124,22 @@ export function saveDraft(questionId, text) {
   const drafts = readJSON(DRAFTS_KEY, {})
   drafts[questionId] = text
   localStorage.setItem(DRAFTS_KEY, JSON.stringify(drafts))
+}
+
+function updateSRS(questionId, wasCorrect) {
+  const all = readJSON(SRS_KEY, {})
+  const card = all[questionId] || { intervalIndex: -1 }
+  card.intervalIndex = wasCorrect
+    ? Math.min(card.intervalIndex + 1, SRS_INTERVALS_DAYS.length - 1)
+    : 0
+  const days = SRS_INTERVALS_DAYS[card.intervalIndex]
+  const dueDate = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10)
+  all[questionId] = { intervalIndex: card.intervalIndex, dueDate }
+  localStorage.setItem(SRS_KEY, JSON.stringify(all))
+}
+
+export function getDueQuestions(allQuestions) {
+  const all = readJSON(SRS_KEY, {})
+  const today = todayStr()
+  return allQuestions.filter((q) => all[q.id] && all[q.id].dueDate <= today)
 }
