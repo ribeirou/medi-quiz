@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Git worktrees used for isolated plan execution
+.worktrees/
+
 # Material de estudo bruto (PDFs de aula) - fonte, não código
 reference-material/
 
