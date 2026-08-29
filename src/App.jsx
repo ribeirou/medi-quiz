@@ -13,6 +13,7 @@ import FloatingIcons from './components/FloatingIcons'
 import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
+import StatsScreen from './components/StatsScreen'
 import HospitalHero from './components/HospitalHero'
 import { getFases } from './lib/trilha'
 import { getSubjectTopics } from './data/topics'
@@ -23,6 +24,7 @@ export default function App() {
   const [activeTopicIndex, setActiveTopicIndex] = useState(null)
   const [activeFaseIndex, setActiveFaseIndex] = useState(null)
   const [reviewing, setReviewing] = useState(false)
+  const [viewingStats, setViewingStats] = useState(false)
 
   const questionsBySubject = useMemo(() => {
     const map = {}
@@ -50,15 +52,17 @@ export default function App() {
 
   const screen = !entered
     ? 'home'
-    : reviewing
-      ? 'review'
-      : activeTopic && activeFaseIndex !== null
-        ? 'quiz'
-        : activeTopic
-          ? 'trilha'
-          : activeSubject
-            ? 'topics'
-            : 'grid'
+    : viewingStats
+      ? 'stats'
+      : reviewing
+        ? 'review'
+        : activeTopic && activeFaseIndex !== null
+          ? 'quiz'
+          : activeTopic
+            ? 'trilha'
+            : activeSubject
+              ? 'topics'
+              : 'grid'
 
   return (
     <AnimatePresence mode="wait">
@@ -108,6 +112,18 @@ export default function App() {
         </motion.div>
       )}
 
+      {screen === 'stats' && (
+        <motion.div
+          key="stats"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.25 }}
+        >
+          <StatsScreen subjects={subjects} onExit={() => setViewingStats(false)} />
+        </motion.div>
+      )}
+
       {screen === 'trilha' && (
         <motion.div
           key="trilha"
@@ -153,7 +169,7 @@ export default function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <Hero />
+          <Hero onOpenStats={() => setViewingStats(true)} />
           <main className="max-w-4xl mx-auto px-4 pb-16">
             <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-4 text-center">
               Escolha uma matéria
@@ -173,7 +189,7 @@ export default function App() {
   )
 }
 
-function Hero() {
+function Hero({ onOpenStats }) {
   const xp = getXP()
   const streak = getStreak()
   const titleRef = useRef(null)
@@ -223,6 +239,13 @@ function Hero() {
             </span>
           </>
         )}
+        <button
+          onClick={onOpenStats}
+          aria-label="Ver progresso"
+          className="h-8 w-8 flex items-center justify-center rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-700 transition-colors cursor-pointer"
+        >
+          📊
+        </button>
         <ThemeToggle />
       </div>
       <div className="max-w-4xl mx-auto px-4 pt-16 pb-14 text-center">
