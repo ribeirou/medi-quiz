@@ -25,7 +25,7 @@ export const topicsBySubject = {
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['histo-40', 'histo-41', 'histo-42', 'histo-43', 'histo-44', 'histo-45', 'histo-46', 'histo-47'] },
   ],
   fisiologia: [
-    { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9', 'fisio-80', 'fisio-81', 'fisio-82', 'fisio-83', 'fisio-84', 'fisio-85'] },
+    { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9', 'fisio-80', 'fisio-81', 'fisio-82', 'fisio-83', 'fisio-84', 'fisio-85', 'fisio-86', 'fisio-87', 'fisio-88', 'fisio-89', 'fisio-90', 'fisio-91', 'fisio-92', 'fisio-93', 'fisio-94'] },
     { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50', 'fisio-55', 'fisio-56', 'fisio-57', 'fisio-58'] },
     { name: 'Farmacologia Básica', icon: '💊', ids: ['fisio-51', 'fisio-52', 'fisio-53', 'fisio-54'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
