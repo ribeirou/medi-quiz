@@ -5,6 +5,7 @@ import { getSubjectStats, getXP, getStreak } from './lib/progress'
 import { getTheme, setTheme } from './lib/theme'
 import SubjectCoverflow from './components/SubjectCoverflow'
 import ParticleField from './components/ParticleField'
+import FloatingIcons from './components/FloatingIcons'
 import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
@@ -134,6 +135,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-slate-100 dark:border-slate-800">
       <ParticleField />
+      <FloatingIcons />
       <div className="absolute top-4 right-4 flex items-center gap-2">
         {(xp > 0 || streak.count > 0) && (
           <>
@@ -154,21 +156,33 @@ function Hero() {
         <ThemeToggle />
       </div>
       <div className="max-w-4xl mx-auto px-4 pt-16 pb-14 text-center">
-        <motion.span
+        <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 mb-4"
+          className="inline-block mb-4"
         >
-          Medicina · USCS
-        </motion.span>
+          <motion.span
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+          >
+            Medicina · USCS
+          </motion.span>
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
           className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight"
         >
-          Revisão por matéria,<br className="hidden sm:block" /> no seu ritmo
+          Revisão por matéria,<br className="hidden sm:block" />{' '}
+          <span
+            className="animate-gradient-text bg-clip-text text-transparent"
+            style={{ backgroundImage: 'linear-gradient(90deg, #2563eb, #7c3aed, #2563eb)' }}
+          >
+            no seu ritmo
+          </span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
