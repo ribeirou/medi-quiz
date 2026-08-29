@@ -9,6 +9,7 @@ export const topicsBySubject = {
     { name: 'Sistema Osteoarticular e Muscular', icon: '🦴', ids: ['anat-1', 'anat-3', 'anat-20', 'anat-21', 'anat-23', 'anat-24', 'anat-25', 'anat-26', 'anat-27', 'anat-34', 'anat-35', 'anat-44', 'anat-45', 'anat-46', 'anat-47', 'anat-48', 'anat-49'] },
     { name: 'Sistema Urinário', icon: '💧', ids: ['anat-22', 'anat-39', 'anat-40', 'anat-41', 'anat-42', 'anat-43'] },
     { name: 'Sistema Reprodutor', icon: '🌸', ids: ['anat-50', 'anat-51', 'anat-52', 'anat-53'] },
+    { name: 'Cabeça e Pescoço', icon: '💇', ids: ['anat-54', 'anat-55', 'anat-56'] },
   ],
   histologia: [
     { name: 'Tecidos Epitelial e Conjuntivo', icon: '🧵', ids: ['histo-1', 'histo-2', 'histo-14', 'histo-15', 'histo-17', 'histo-18'] },
@@ -25,6 +26,7 @@ export const topicsBySubject = {
   fisiologia: [
     { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9'] },
     { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50'] },
+    { name: 'Farmacologia Básica', icon: '💊', ids: ['fisio-51', 'fisio-52', 'fisio-53', 'fisio-54'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
     { name: 'Fisiologia Neuromuscular', icon: '⚡', ids: ['fisio-1', 'fisio-13', 'fisio-14', 'fisio-15', 'fisio-17', 'fisio-39', 'fisio-40'] },
     { name: 'Sistema Nervoso Autônomo', icon: '🧠', ids: ['fisio-36', 'fisio-37', 'fisio-38', 'fisio-41', 'fisio-42'] },
@@ -48,6 +50,7 @@ export const topicsBySubject = {
     { name: 'Placenta e Gemelaridade', icon: '🤰', ids: ['embrio-7', 'embrio-14', 'embrio-15', 'embrio-26'] },
     { name: 'Sistema Cardiovascular Fetal', icon: '🫀', ids: ['embrio-12', 'embrio-13', 'embrio-17', 'embrio-27', 'embrio-28', 'embrio-29', 'embrio-30'] },
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['embrio-31', 'embrio-32', 'embrio-33'] },
+    { name: 'Sistema Urogenital', icon: '🌸', ids: ['embrio-34', 'embrio-35', 'embrio-36', 'embrio-37'] },
   ],
   habilidades: [
     { name: 'Sinais Vitais', icon: '🌡️', ids: ['hab-1', 'hab-2', 'hab-3', 'hab-10', 'hab-12', 'hab-24'] },

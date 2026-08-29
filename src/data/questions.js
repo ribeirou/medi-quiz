@@ -501,6 +501,31 @@ export const questions = [
     answerIndex: 1,
     explanation: 'Os espermatozoides são produzidos nos túbulos seminíferos, estruturas tubulares enoveladas revestidas pelo epitélio germinativo. Depois de formados, amadurecem no epidídimo antes de seguirem pelo ducto deferente.',
   },
+  {
+    id: 'anat-54',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'A glândula tireoide está localizada na região anterior do pescoço, aproximadamente a que nível vertebral?',
+    options: ['C1-C2', 'C5-T1', 'T6-T10', 'L1-L3'],
+    answerIndex: 1,
+    explanation: 'A tireoide situa-se na região anterior do pescoço, ao nível de C5 a T1, com dois lobos (direito e esquerdo) unidos pelo istmo, anterolateralmente à laringe e à traqueia.',
+  },
+  {
+    id: 'anat-55',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'Qual músculo do pescoço serve como referência anatômica, dividindo cada lado em regiões cervicais anterior e posterior?',
+    options: ['Trapézio', 'Esternocleidomastóideo', 'Platisma', 'Escaleno anterior'],
+    answerIndex: 1,
+    explanation: 'O esternocleidomastóideo (ECOM) é a principal referência de superfície do pescoço: sua borda divide cada lado em triângulo cervical anterior e posterior, usado como base para descrever a topografia cervical.',
+  },
+  {
+    id: 'anat-56',
+    subject: 'anatomia',
+    type: 'dissertativa',
+    question: 'Quais estruturas importantes estão contidas no triângulo anterior do pescoço?',
+    answer: 'O triângulo anterior do pescoço contém os músculos infra-hióideos e as principais vísceras cervicais: parte cervical do esôfago e da traqueia, a laringe, e as glândulas tireoide, paratireoides e timo (quando ainda presente na região cervical, especialmente em crianças).',
+  },
 
   // Histologia
   {
@@ -1256,6 +1281,40 @@ export const questions = [
     answerIndex: 2,
     explanation: 'A hemoglobina é um tetrâmero: quatro cadeias de globina (duas alfa e duas beta, na forma adulta predominante), cada uma associada a um grupo heme contendo ferro, capaz de se ligar a uma molécula de O2 — totalizando 4 sítios de ligação por molécula de hemoglobina.',
   },
+  {
+    id: 'fisio-51',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'A farmacocinética estuda quatro processos que o organismo realiza sobre o fármaco, resumidos pela sigla ADME. Quais são eles?',
+    options: ['Ação, Dose, Metabolismo, Efeito', 'Absorção, Distribuição, Metabolismo, Excreção', 'Alergia, Dependência, Metabolismo, Eliminação', 'Administração, Diluição, Mistura, Eliminação'],
+    answerIndex: 1,
+    explanation: 'ADME resume as quatro etapas farmacocinéticas: Absorção (entrada na circulação), Distribuição (chegada aos tecidos/órgão-alvo), Metabolismo (biotransformação, principalmente hepática) e Excreção (eliminação, principalmente renal).',
+  },
+  {
+    id: 'fisio-52',
+    subject: 'fisiologia',
+    type: 'dissertativa',
+    question: 'Diferencie farmacocinética e farmacodinâmica.',
+    answer: 'A farmacocinética estuda "o que o organismo faz com o fármaco": absorção, distribuição, metabolismo e excreção — ou seja, como a concentração do fármaco varia no corpo ao longo do tempo. A farmacodinâmica estuda "o que o fármaco faz no organismo": a interação do fármaco com seu alvo (receptor, enzima etc.) e os efeitos terapêuticos ou adversos resultantes dessa interação.',
+  },
+  {
+    id: 'fisio-53',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'O metabolismo (biotransformação) de fármacos ocorre principalmente em qual órgão?',
+    options: ['Rim', 'Fígado', 'Pulmão', 'Baço'],
+    answerIndex: 1,
+    explanation: 'O fígado é o principal órgão de biotransformação de fármacos, convertendo-os em metabólitos (ativos ou inativos), geralmente facilitando sua posterior excreção renal.',
+  },
+  {
+    id: 'fisio-54',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'A meia-vida de eliminação de um fármaco é definida como:',
+    options: ['O tempo total até a eliminação completa do fármaco', 'O tempo necessário para a concentração plasmática do fármaco cair pela metade', 'O tempo até o início do efeito terapêutico', 'A dose necessária para metade do efeito máximo'],
+    answerIndex: 1,
+    explanation: 'A meia-vida é o tempo necessário para que a concentração plasmática do fármaco caia para metade do valor anterior. Esse parâmetro orienta a frequência de doses necessária para manter a concentração dentro da faixa terapêutica.',
+  },
 
   // Bioquímica
   {
@@ -1811,6 +1870,40 @@ export const questions = [
     type: 'dissertativa',
     question: 'Cite as quatro fases histológicas da maturação pulmonar, na ordem em que ocorrem.',
     answer: 'Pseudoglandular (6ª-16ª semana): formação da árvore condutora, aspecto de glândula. Canalicular (16ª-26ª semana): luz dos brônquios/bronquíolos aumenta, tecido se torna muito vascularizado, formam-se os primeiros sacos terminais. Saco terminal: multiplicação dos sacos terminais (futuros alvéolos) e maior adelgaçamento do epitélio, possibilitando trocas gasosas. Alveolar: continua principalmente após o nascimento, com maturação e multiplicação dos alvéolos verdadeiros.',
+  },
+  {
+    id: 'embrio-34',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'Ao longo do desenvolvimento, formam-se sucessivamente três conjuntos de órgãos excretores. Qual é a ordem correta, do mais primitivo ao definitivo?',
+    options: ['Metanefro → mesonefro → pronefro', 'Pronefro → mesonefro → metanefro', 'Mesonefro → pronefro → metanefro', 'Todos se formam simultaneamente'],
+    answerIndex: 1,
+    explanation: 'Pronefro (4ª semana, rudimentar e não funcional) → mesonefro (estrutura provisória, funciona brevemente como rim transitório) → metanefro (5ª semana em diante, origina o rim definitivo).',
+  },
+  {
+    id: 'embrio-35',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'O broto ureteral, que dará origem ao ureter, pelve renal, cálices e ductos coletores, surge a partir de qual estrutura?',
+    options: ['Ducto paramesonéfrico (de Müller)', 'Ducto mesonéfrico (de Wolff)', 'Crista neural', 'Saco vitelino'],
+    answerIndex: 1,
+    explanation: 'O broto ureteral é uma evaginação do ducto mesonéfrico (de Wolff), próxima à sua desembocadura na cloaca, que cresce em direção ao blastema metanefrogênico e induz sua diferenciação, formando o rim definitivo.',
+  },
+  {
+    id: 'embrio-36',
+    subject: 'embriologia',
+    type: 'dissertativa',
+    question: 'Diferencie os ductos de Wolff (mesonéfricos) e de Müller (paramesonéfricos) quanto ao destino em cada sexo.',
+    answer: 'Ambos os ductos estão presentes em embriões de ambos os sexos inicialmente. Nos homens, sob ação da testosterona, os ductos de Wolff se diferenciam nos órgãos genitais internos masculinos (epidídimo, ducto deferente, vesícula seminal), enquanto os ductos de Müller regridem por ação do hormônio anti-mülleriano (AMH/HAM) secretado pelos testículos fetais. Nas mulheres, na ausência de testosterona e AMH, os ductos de Wolff regridem espontaneamente, e os ductos de Müller se desenvolvem nos órgãos genitais internos femininos (tubas uterinas, útero e parte superior da vagina).',
+  },
+  {
+    id: 'embrio-37',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'Qual hormônio, secretado pelos testículos fetais, causa a regressão dos ductos de Müller no embrião masculino?',
+    options: ['Testosterona', 'Hormônio anti-mülleriano (AMH/HAM)', 'Estrogênio', 'LH'],
+    answerIndex: 1,
+    explanation: 'O hormônio anti-mülleriano (AMH, também chamado HAM), secretado pelas células de Sertoli fetais, causa a regressão dos ductos paramesonéfricos (de Müller). A testosterona, secretada pelas células de Leydig, é responsável por estimular o desenvolvimento dos ductos de Wolff — os dois hormônios agem em conjunto na diferenciação sexual masculina.',
   },
 
   // Habilidades Médicas
