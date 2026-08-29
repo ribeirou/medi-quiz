@@ -4,26 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function HeroCopy({ titleRef, style }) {
-  return (
-    <div
-      ref={titleRef}
-      className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
-      style={style}
-    >
-      <span className="text-xs font-semibold tracking-widest uppercase text-blue-300 mb-3">
-        Medicina · USCS
-      </span>
-      <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight max-w-2xl">
-        Bem-vinda ao Medi Quiz
-      </h1>
-      <p className="mt-4 text-slate-200 max-w-md">
-        Cada porta que se abre é uma matéria a menos entre você e a prova.
-      </p>
-    </div>
-  )
-}
-
 export default function HospitalHero({ onEnter }) {
   const [reducedMotion] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -42,15 +22,16 @@ export default function HospitalHero({ onEnter }) {
     enteredRef.current = true
     stRef.current?.kill()
 
-    if (reducedMotion) {
+    const stage = stageRef.current
+    if (!stage) {
       onEnter()
       return
     }
 
-    gsap.to(stageRef.current, {
+    gsap.to(stage, {
       scale: 1.6,
       opacity: 0,
-      duration: 0.7,
+      duration: 0.6,
       ease: 'power2.in',
       onComplete: onEnter,
     })
@@ -87,70 +68,67 @@ export default function HospitalHero({ onEnter }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reducedMotion])
 
-  if (reducedMotion) {
-    return (
-      <div className="relative h-screen w-full overflow-hidden bg-slate-950">
+  return (
+    <div ref={wrapperRef} className="relative" style={reducedMotion ? undefined : { height: '250vh' }}>
+      <div
+        ref={stageRef}
+        className={`${reducedMotion ? 'relative' : 'sticky top-0'} h-screen w-full overflow-hidden bg-slate-950 origin-center`}
+      >
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           src="/videos/hospital-hallway.mp4"
           muted
+          loop={!reducedMotion}
           playsInline
-          preload="metadata"
+          preload={reducedMotion ? 'metadata' : 'auto'}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-slate-950/70" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/70" />
+
+        {!reducedMotion && (
+          <button
+            onClick={enter}
+            className="absolute top-4 right-4 z-10 text-xs font-medium text-white/70 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-full border border-white/20 transition-colors cursor-pointer"
+          >
+            Pular introdução
+          </button>
+        )}
+
+        <div
+          ref={titleRef}
+          className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
+          style={{ opacity: reducedMotion || ready ? 1 : 0, transition: 'opacity 0.6s ease' }}
+        >
           <span className="text-xs font-semibold tracking-widest uppercase text-blue-300 mb-3">
             Medicina · USCS
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight max-w-2xl">
             Bem-vinda ao Medi Quiz
           </h1>
-          <p className="mt-4 text-slate-200 max-w-md mb-8">
+          <p className="mt-4 text-slate-200 max-w-md">
             Cada porta que se abre é uma matéria a menos entre você e a prova.
           </p>
-          <button
-            onClick={enter}
-            className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors cursor-pointer"
+          {reducedMotion && (
+            <button
+              onClick={enter}
+              className="mt-8 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors cursor-pointer"
+            >
+              Começar
+            </button>
+          )}
+        </div>
+
+        {!reducedMotion && (
+          <div
+            ref={scrollHintRef}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/80"
           >
-            Começar
-          </button>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div ref={wrapperRef} className="relative" style={{ height: '250vh' }}>
-      <div ref={stageRef} className="sticky top-0 h-screen w-full overflow-hidden bg-slate-950 origin-center">
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hospital-hallway.mp4"
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/70" />
-
-        <button
-          onClick={enter}
-          className="absolute top-4 right-4 z-10 text-xs font-medium text-white/70 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-full border border-white/20 transition-colors cursor-pointer"
-        >
-          Pular introdução
-        </button>
-
-        <HeroCopy titleRef={titleRef} style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.6s ease' }} />
-
-        <div
-          ref={scrollHintRef}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/80"
-        >
-          <span className="text-xs font-medium tracking-wide uppercase">Role para entrar</span>
-          <span className="text-lg animate-bounce" aria-hidden="true">
-            ↓
-          </span>
-        </div>
+            <span className="text-xs font-medium tracking-wide uppercase">Role para entrar</span>
+            <span className="text-lg animate-bounce" aria-hidden="true">
+              ↓
+            </span>
+          </div>
+        )}
       </div>
     </div>
   )
