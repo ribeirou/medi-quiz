@@ -5,7 +5,7 @@ import { SplitText } from 'gsap/SplitText'
 
 gsap.registerPlugin(SplitText)
 import { subjects, questions } from './data/questions'
-import { getSubjectStats, getXP, getStreak } from './lib/progress'
+import { getSubjectStats, getWrongQuestions, getXP, getStreak } from './lib/progress'
 import { getTheme, setTheme } from './lib/theme'
 import SubjectCoverflow from './components/SubjectCoverflow'
 import ParticleField from './components/ParticleField'
@@ -22,6 +22,7 @@ export default function App() {
   const [activeSubjectId, setActiveSubjectId] = useState(null)
   const [activeTopicIndex, setActiveTopicIndex] = useState(null)
   const [activeFaseIndex, setActiveFaseIndex] = useState(null)
+  const [reviewing, setReviewing] = useState(false)
 
   const questionsBySubject = useMemo(() => {
     const map = {}
@@ -42,15 +43,22 @@ export default function App() {
     [activeTopic]
   )
 
+  const reviewQuestions = useMemo(
+    () => (reviewing && activeSubject ? getWrongQuestions(activeSubject.id, questions) : []),
+    [reviewing, activeSubject]
+  )
+
   const screen = !entered
     ? 'home'
-    : activeTopic && activeFaseIndex !== null
-      ? 'quiz'
-      : activeTopic
-        ? 'trilha'
-        : activeSubject
-          ? 'topics'
-          : 'grid'
+    : reviewing
+      ? 'review'
+      : activeTopic && activeFaseIndex !== null
+        ? 'quiz'
+        : activeTopic
+          ? 'trilha'
+          : activeSubject
+            ? 'topics'
+            : 'grid'
 
   return (
     <AnimatePresence mode="wait">
@@ -79,6 +87,23 @@ export default function App() {
             questions={fases[activeFaseIndex].questions}
             backLabel="← Fases"
             onExit={() => setActiveFaseIndex(null)}
+          />
+        </motion.div>
+      )}
+
+      {screen === 'review' && (
+        <motion.div
+          key="review"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.25 }}
+        >
+          <QuizScreen
+            subject={activeSubject}
+            questions={reviewQuestions}
+            backLabel="← Tópicos"
+            onExit={() => setReviewing(false)}
           />
         </motion.div>
       )}
@@ -115,6 +140,7 @@ export default function App() {
             topics={topics}
             onSelectTopic={setActiveTopicIndex}
             onExit={() => setActiveSubjectId(null)}
+            onReviewErrors={() => setReviewing(true)}
           />
         </motion.div>
       )}
