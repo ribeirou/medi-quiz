@@ -32,7 +32,7 @@ export const topicsBySubject = {
     { name: 'Fisiologia Neuromuscular', icon: '⚡', ids: ['fisio-1', 'fisio-13', 'fisio-14', 'fisio-15', 'fisio-17', 'fisio-39', 'fisio-40'] },
     { name: 'Sistema Nervoso Autônomo', icon: '🧠', ids: ['fisio-36', 'fisio-37', 'fisio-38', 'fisio-41', 'fisio-42', 'fisio-66', 'fisio-74', 'fisio-75'] },
     { name: 'Sinapses e Receptores Sensoriais', icon: '⚡', ids: ['fisio-59', 'fisio-60', 'fisio-61', 'fisio-62', 'fisio-63', 'fisio-64', 'fisio-65', 'fisio-67', 'fisio-68', 'fisio-69', 'fisio-70', 'fisio-71', 'fisio-72', 'fisio-73'] },
-    { name: 'Sistema Endócrino', icon: '⚙️', ids: ['fisio-16', 'fisio-20', 'fisio-22', 'fisio-23', 'fisio-24', 'fisio-79'] },
+    { name: 'Sistema Endócrino', icon: '⚙️', ids: ['fisio-16', 'fisio-20', 'fisio-22', 'fisio-23', 'fisio-24', 'fisio-79', 'fisio-111', 'fisio-112', 'fisio-113', 'fisio-114', 'fisio-115'] },
     { name: 'Homeostase e Regulação', icon: '🎯', ids: ['fisio-76', 'fisio-77', 'fisio-78'] },
     { name: 'Fisiologia Digestória', icon: '🍽️', ids: ['fisio-18', 'fisio-19', 'fisio-21', 'fisio-107', 'fisio-108', 'fisio-109', 'fisio-110'] },
     { name: 'Equilíbrio Ácido-Base', icon: '⚖️', ids: ['fisio-25', 'fisio-26', 'fisio-27', 'fisio-28', 'fisio-29', 'fisio-30'] },
