@@ -3,6 +3,7 @@ const XP_KEY = 'medi-quiz-xp'
 const STREAK_KEY = 'medi-quiz-streak'
 const DRAFTS_KEY = 'medi-quiz-drafts'
 const ANSWERED_KEY = 'medi-quiz-answered'
+const WRONG_KEY = 'medi-quiz-wrong'
 
 function readJSON(key, fallback) {
   try {
@@ -31,7 +32,12 @@ export function recordAnswer(subjectId, questionId, wasCorrect) {
 
   markAnswered(subjectId, questionId)
 
-  if (wasCorrect) addXP(10)
+  if (wasCorrect) {
+    unmarkWrong(subjectId, questionId)
+    addXP(10)
+  } else {
+    markWrong(subjectId, questionId)
+  }
   bumpStreak()
 }
 
@@ -45,6 +51,26 @@ function markAnswered(subjectId, questionId) {
 
 export function getAnsweredIds(subjectId) {
   const all = readJSON(ANSWERED_KEY, {})
+  return all[subjectId] || []
+}
+
+function markWrong(subjectId, questionId) {
+  const all = readJSON(WRONG_KEY, {})
+  const ids = all[subjectId] || []
+  if (!ids.includes(questionId)) ids.push(questionId)
+  all[subjectId] = ids
+  localStorage.setItem(WRONG_KEY, JSON.stringify(all))
+}
+
+function unmarkWrong(subjectId, questionId) {
+  const all = readJSON(WRONG_KEY, {})
+  const ids = all[subjectId] || []
+  all[subjectId] = ids.filter((id) => id !== questionId)
+  localStorage.setItem(WRONG_KEY, JSON.stringify(all))
+}
+
+export function getWrongIds(subjectId) {
+  const all = readJSON(WRONG_KEY, {})
   return all[subjectId] || []
 }
 

@@ -4,4 +4,8 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  test: {
+    environment: 'node',
+    globals: true,
+  },
 })
