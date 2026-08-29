@@ -62,6 +62,7 @@ export const topicsBySubject = {
     { name: 'Exame Respiratório', icon: '🫁', ids: ['hab-15', 'hab-16', 'hab-17'] },
     { name: 'Exame Abdominal', icon: '🍽️', ids: ['hab-8', 'hab-25', 'hab-26', 'hab-27', 'hab-28'] },
     { name: 'Exame Neurológico', icon: '🧠', ids: ['hab-13', 'hab-14', 'hab-18', 'hab-29', 'hab-30'] },
+    { name: 'Exame de Cabeça, Olhos e Ouvidos', icon: '👁️', ids: ['hab-31', 'hab-32', 'hab-33', 'hab-34', 'hab-35', 'hab-36', 'hab-37', 'hab-38', 'hab-39', 'hab-40', 'hab-41', 'hab-42', 'hab-43'] },
   ],
 }
 
