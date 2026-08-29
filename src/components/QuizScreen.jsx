@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { recordAnswer, getDraft, saveDraft, getXP, getStreak } from '../lib/progress'
 
-export default function QuizScreen({ subject, questions, onExit }) {
+export default function QuizScreen({ subject, questions, onExit, backLabel = '← Matérias' }) {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
@@ -36,12 +36,12 @@ export default function QuizScreen({ subject, questions, onExit }) {
     if (selected !== null) return
     setSelected(optionIndex)
     const wasCorrect = optionIndex === question.answerIndex
-    recordAnswer(subject.id, wasCorrect)
+    recordAnswer(subject.id, question.id, wasCorrect)
     if (wasCorrect) celebrate(10)
   }
 
   function handleSelfCheck(wasCorrect) {
-    recordAnswer(subject.id, wasCorrect)
+    recordAnswer(subject.id, question.id, wasCorrect)
     setRevealed('done')
     if (wasCorrect) celebrate(10)
   }
@@ -53,7 +53,7 @@ export default function QuizScreen({ subject, questions, onExit }) {
           onClick={onExit}
           className="text-sm text-slate-500 hover:text-slate-800 transition-colors cursor-pointer flex items-center gap-1"
         >
-          ← Matérias
+          {backLabel}
         </button>
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-orange-600 flex items-center gap-1">
