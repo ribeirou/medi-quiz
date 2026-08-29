@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { recordAnswer, getDraft, saveDraft, getXP, getStreak, getAnsweredIds } from '../lib/progress'
 
-export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Üê Mat√©rias' }) {
+export default function QuizScreen({ subject, subjects, questions, onExit, backLabel = '‚Üê Mat√©rias' }) {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
@@ -11,6 +11,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
   const [xpPop, setXpPop] = useState(null)
 
   const question = questions[index]
+  const activeSubject = subject || subjects.find((s) => s.id === question.subject)
   const isLast = index === questions.length - 1
   const isFirst = index === 0
   const streak = getStreak()
@@ -28,7 +29,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
   }
 
   function handleFinish() {
-    const answeredIds = getAnsweredIds(subject.id)
+    const answeredIds = getAnsweredIds(activeSubject.id)
     const faseComplete = questions.every((q) => answeredIds.includes(q.id))
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (faseComplete && !reduced) {
@@ -36,7 +37,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
         particleCount: 120,
         spread: 75,
         origin: { y: 0.6 },
-        colors: [subject.color, '#ffffff', '#facc15'],
+        colors: [activeSubject.color, '#ffffff', '#facc15'],
       })
     }
     onExit()
@@ -52,12 +53,12 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
     if (selected !== null) return
     setSelected(optionIndex)
     const wasCorrect = optionIndex === question.answerIndex
-    recordAnswer(subject.id, question.id, wasCorrect)
+    recordAnswer(activeSubject.id, question.id, wasCorrect)
     if (wasCorrect) celebrate(10)
   }
 
   function handleSelfCheck(wasCorrect) {
-    recordAnswer(subject.id, question.id, wasCorrect)
+    recordAnswer(activeSubject.id, question.id, wasCorrect)
     setRevealed('done')
     if (wasCorrect) celebrate(10)
   }
@@ -106,7 +107,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
       <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-8">
         <motion.div
           className="h-full rounded-full"
-          style={{ backgroundColor: subject.color }}
+          style={{ backgroundColor: activeSubject.color }}
           initial={false}
           animate={{ width: `${((index + 1) / questions.length) * 100}%` }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
@@ -123,7 +124,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
         >
           <span
             className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3"
-            style={{ backgroundColor: `${subject.color}1a`, color: subject.color }}
+            style={{ backgroundColor: `${activeSubject.color}1a`, color: activeSubject.color }}
           >
             {question.type === 'mcq' ? 'M√∫ltipla escolha' : 'Dissertativa'}
           </span>
@@ -177,7 +178,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = '‚Ü
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.95 }}
           className="px-5 py-2 rounded-lg text-sm font-medium text-white transition-colors cursor-pointer"
-          style={{ backgroundColor: subject.color }}
+          style={{ backgroundColor: activeSubject.color }}
         >
           {isLast ? 'Finalizar' : 'Pr√≥xima'}
         </motion.button>
