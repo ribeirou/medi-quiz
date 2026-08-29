@@ -29,16 +29,31 @@ export default function HospitalHero({ onEnter }) {
     () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   )
   const wrapperRef = useRef(null)
+  const stageRef = useRef(null)
   const videoRef = useRef(null)
   const titleRef = useRef(null)
   const scrollHintRef = useRef(null)
   const enteredRef = useRef(false)
+  const stRef = useRef(null)
   const [ready, setReady] = useState(false)
 
   function enter() {
     if (enteredRef.current) return
     enteredRef.current = true
-    onEnter()
+    stRef.current?.kill()
+
+    if (reducedMotion) {
+      onEnter()
+      return
+    }
+
+    gsap.to(stageRef.current, {
+      scale: 1.6,
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power2.in',
+      onComplete: onEnter,
+    })
   }
 
   useEffect(() => {
@@ -48,21 +63,17 @@ export default function HospitalHero({ onEnter }) {
 
     function onLoaded() {
       setReady(true)
-      video.pause()
-      video.currentTime = 0
+      video.play().catch(() => {})
     }
     video.addEventListener('loadedmetadata', onLoaded)
 
-    const st = ScrollTrigger.create({
+    stRef.current = ScrollTrigger.create({
       trigger: wrapperRef.current,
       start: 'top top',
-      end: '+=2200',
+      end: '+=1500',
       pin: true,
-      scrub: 0.5,
+      scrub: true,
       onUpdate: (self) => {
-        if (video.duration) {
-          video.currentTime = self.progress * video.duration
-        }
         gsap.to(titleRef.current, { opacity: self.progress > 0.55 ? 0 : 1, duration: 0.2, overwrite: true })
         gsap.to(scrollHintRef.current, { opacity: self.progress > 0.15 ? 0 : 1, duration: 0.2, overwrite: true })
       },
@@ -71,8 +82,9 @@ export default function HospitalHero({ onEnter }) {
 
     return () => {
       video.removeEventListener('loadedmetadata', onLoaded)
-      st.kill()
+      stRef.current?.kill()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reducedMotion])
 
   if (reducedMotion) {
@@ -109,12 +121,13 @@ export default function HospitalHero({ onEnter }) {
 
   return (
     <div ref={wrapperRef} className="relative" style={{ height: '250vh' }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-slate-950">
+      <div ref={stageRef} className="sticky top-0 h-screen w-full overflow-hidden bg-slate-950 origin-center">
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           src="/videos/hospital-hallway.mp4"
           muted
+          loop
           playsInline
           preload="auto"
         />
