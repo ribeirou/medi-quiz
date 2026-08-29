@@ -17,7 +17,7 @@ export const topicsBySubject = {
     { name: 'Tecido Muscular e Vascular', icon: '💪', ids: ['histo-7', 'histo-9', 'histo-10'] },
     { name: 'Tecido Nervoso', icon: '🧠', ids: ['histo-11', 'histo-12', 'histo-16', 'histo-48', 'histo-49', 'histo-50', 'histo-51', 'histo-52', 'histo-53'] },
     { name: 'Tecido Ósseo e Cartilaginoso', icon: '🦴', ids: ['histo-3', 'histo-19', 'histo-20', 'histo-21', 'histo-22', 'histo-23'] },
-    { name: 'Sangue', icon: '🩸', ids: ['histo-24', 'histo-25', 'histo-26'] },
+    { name: 'Sangue', icon: '🩸', ids: ['histo-24', 'histo-25', 'histo-26', 'histo-59', 'histo-60', 'histo-61', 'histo-62', 'histo-63', 'histo-64', 'histo-65'] },
     { name: 'Sistema Urinário', icon: '💧', ids: ['histo-13', 'histo-27', 'histo-28'] },
     { name: 'Sistema Endócrino', icon: '⚙️', ids: ['histo-31', 'histo-32', 'histo-33'] },
     { name: 'Sistema Digestório e Glândulas', icon: '🍽️', ids: ['histo-29', 'histo-30', 'histo-34', 'histo-35', 'histo-36'] },
