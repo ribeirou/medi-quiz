@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { getFaseProgress, getWrongIds } from '../lib/progress'
 
-export default function TopicScreen({ subject, topics, onSelectTopic, onExit, onReviewErrors }) {
+export default function TopicScreen({ subject, topics, onSelectTopic, onExit, onReviewErrors, onStartExam }) {
   const wrongCount = getWrongIds(subject.id).length
 
   return (
@@ -40,6 +40,23 @@ export default function TopicScreen({ subject, topics, onSelectTopic, onExit, on
           </span>
         </motion.button>
       )}
+
+      <motion.button
+        onClick={onStartExam}
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full mb-6 rounded-2xl border-2 border-dashed p-4 flex items-center justify-between gap-3 cursor-pointer transition-colors"
+        style={{ borderColor: subject.color }}
+      >
+        <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+          🕐 Prova cronometrada
+        </span>
+        <span className="text-sm font-semibold" style={{ color: subject.color }}>
+          Começar →
+        </span>
+      </motion.button>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {topics.map((topic, index) => {

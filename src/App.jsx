@@ -13,6 +13,7 @@ import FloatingIcons from './components/FloatingIcons'
 import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
+import ExamScreen from './components/ExamScreen'
 import StatsScreen from './components/StatsScreen'
 import HospitalHero from './components/HospitalHero'
 import { getFases } from './lib/trilha'
@@ -26,6 +27,7 @@ export default function App() {
   const [reviewing, setReviewing] = useState(false)
   const [viewingStats, setViewingStats] = useState(false)
   const [reviewingSpaced, setReviewingSpaced] = useState(false)
+  const [takingExam, setTakingExam] = useState(false)
 
   const questionsBySubject = useMemo(() => {
     const map = {}
@@ -65,7 +67,9 @@ export default function App() {
             : activeTopic
               ? 'trilha'
               : activeSubject
-                ? 'topics'
+                ? takingExam
+                  ? 'exam'
+                  : 'topics'
                 : 'grid'
 
   return (
@@ -178,6 +182,23 @@ export default function App() {
             onSelectTopic={setActiveTopicIndex}
             onExit={() => setActiveSubjectId(null)}
             onReviewErrors={() => setReviewing(true)}
+            onStartExam={() => setTakingExam(true)}
+          />
+        </motion.div>
+      )}
+
+      {screen === 'exam' && (
+        <motion.div
+          key="exam"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.25 }}
+        >
+          <ExamScreen
+            subject={activeSubject}
+            questions={questionsBySubject[activeSubject.id]}
+            onExit={() => setTakingExam(false)}
           />
         </motion.div>
       )}
