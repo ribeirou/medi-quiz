@@ -49,17 +49,23 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
-        <button
+        <motion.button
           onClick={onExit}
+          whileHover={{ x: -2 }}
+          whileTap={{ scale: 0.96 }}
           className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 transition-colors cursor-pointer flex items-center gap-1"
         >
           {backLabel}
-        </button>
+        </motion.button>
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-orange-600 dark:text-orange-400 flex items-center gap-1">
             ðŸ”¥ {streak.count}
           </span>
-          <span className="relative text-sm font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 px-2.5 py-1 rounded-full">
+          <motion.span
+            animate={xpPop ? { scale: [1, 1.12, 1] } : {}}
+            transition={{ duration: 0.5 }}
+            className="relative text-sm font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 px-2.5 py-1 rounded-full"
+          >
             {xp} XP
             <AnimatePresence>
               {xpPop && (
@@ -74,7 +80,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
                 </motion.span>
               )}
             </AnimatePresence>
-          </span>
+          </motion.span>
           <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
             {index + 1}/{questions.length}
           </span>
@@ -141,20 +147,24 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
       </AnimatePresence>
 
       <div className="flex justify-between mt-8">
-        <button
+        <motion.button
           onClick={goPrev}
           disabled={isFirst}
+          whileHover={isFirst ? {} : { x: -2 }}
+          whileTap={isFirst ? {} : { scale: 0.95 }}
           className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-0 disabled:pointer-events-none transition-colors cursor-pointer"
         >
           Anterior
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           onClick={isLast ? onExit : goNext}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.95 }}
           className="px-5 py-2 rounded-lg text-sm font-medium text-white transition-colors cursor-pointer"
           style={{ backgroundColor: subject.color }}
         >
           {isLast ? 'Finalizar' : 'PrÃ³xima'}
-        </button>
+        </motion.button>
       </div>
     </div>
   )
@@ -235,12 +245,14 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
             placeholder="Escreva sua resposta antes de ver o gabarito..."
             className="w-full rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-3 text-sm text-slate-800 dark:text-slate-100 focus:border-blue-400 dark:focus:border-blue-500 focus:outline-none resize-y mb-3"
           />
-          <button
+          <motion.button
             onClick={onReveal}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.96 }}
             className="px-4 py-2.5 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-700 dark:hover:text-blue-400 transition-colors cursor-pointer"
           >
             Ver gabarito
-          </button>
+          </motion.button>
         </div>
       )}
 
@@ -267,18 +279,22 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
 
             {revealed !== 'done' && (
               <div className="flex gap-2.5">
-                <button
+                <motion.button
                   onClick={() => onSelfCheck(true)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
                   className="flex-1 px-4 py-2.5 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors cursor-pointer"
                 >
                   Acertei
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => onSelfCheck(false)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
                   className="flex-1 px-4 py-2.5 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors cursor-pointer"
                 >
                   Errei
-                </button>
+                </motion.button>
               </div>
             )}
             {revealed === 'done' && (

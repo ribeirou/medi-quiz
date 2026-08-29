@@ -85,21 +85,25 @@ export default function SubjectCoverflow({ items, onSelect }) {
       </div>
 
       <div className="flex items-center justify-center gap-4 mt-4">
-        <button
+        <motion.button
           type="button"
           onClick={() => goTo(activeIndex - 1)}
           disabled={activeIndex === 0}
+          whileHover={activeIndex === 0 ? {} : { scale: 1.1, x: -1 }}
+          whileTap={activeIndex === 0 ? {} : { scale: 0.9 }}
           aria-label="Matéria anterior"
           className="h-9 w-9 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:border-blue-200 dark:hover:border-blue-700"
         >
           ‹
-        </button>
+        </motion.button>
         <div className="flex gap-1.5">
           {items.map((item, index) => (
-            <button
+            <motion.button
               key={item.subject.id}
               type="button"
               onClick={() => goTo(index)}
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.9 }}
               aria-label={`Ir para ${item.subject.name}`}
               className={`h-1.5 rounded-full transition-all ${
                 index === activeIndex ? 'w-5 bg-blue-600 dark:bg-blue-400' : 'w-1.5 bg-slate-300 dark:bg-slate-600'
@@ -107,15 +111,17 @@ export default function SubjectCoverflow({ items, onSelect }) {
             />
           ))}
         </div>
-        <button
+        <motion.button
           type="button"
           onClick={() => goTo(activeIndex + 1)}
           disabled={activeIndex === lastIndex}
+          whileHover={activeIndex === lastIndex ? {} : { scale: 1.1, x: 1 }}
+          whileTap={activeIndex === lastIndex ? {} : { scale: 0.9 }}
           aria-label="Próxima matéria"
           className="h-9 w-9 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-600 dark:text-slate-300 disabled:opacity-30 disabled:cursor-not-allowed hover:border-blue-200 dark:hover:border-blue-700"
         >
           ›
-        </button>
+        </motion.button>
       </div>
     </div>
   )

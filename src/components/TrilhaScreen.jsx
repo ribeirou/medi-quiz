@@ -84,7 +84,15 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit, tit
               className="relative z-10 cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-600"
               aria-label={`Fase ${fase.number}${isDone ? ', concluída' : answered > 0 ? `, ${answered} de ${total} respondidas` : ''}`}
             >
-              <svg width="64" height="64" viewBox="0 0 64 64">
+              <motion.svg
+                key={isDone}
+                initial={isDone ? { scale: 0.5, opacity: 0 } : false}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                width="64"
+                height="64"
+                viewBox="0 0 64 64"
+              >
                 <circle cx="32" cy="32" r={radius} fill="none" className="text-slate-200 dark:text-slate-700" stroke="currentColor" strokeWidth="4" />
                 {fraction > 0 && (
                   <circle
@@ -128,7 +136,7 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit, tit
                 >
                   {isDone ? '✓' : fase.number}
                 </text>
-              </svg>
+              </motion.svg>
               {answered > 0 && !isDone && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-max text-xs text-slate-400 dark:text-slate-500 text-center">
                   {answered}/{total}

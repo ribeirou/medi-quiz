@@ -38,7 +38,14 @@ export default function TopicScreen({ subject, topics, onSelectTopic, onExit }) 
               style={{ borderColor: isDone ? subject.color : undefined }}
             >
               <div className="flex items-start justify-between gap-3">
-                <span className="text-2xl" aria-hidden="true">{topic.icon}</span>
+                <motion.span
+                  className="text-2xl inline-block"
+                  aria-hidden="true"
+                  whileHover={{ rotate: [0, -10, 10, -6, 0], scale: 1.15 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {topic.icon}
+                </motion.span>
                 {isDone && (
                   <span
                     className="text-xs font-medium px-2 py-1 rounded-full text-white"
