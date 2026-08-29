@@ -34,7 +34,7 @@ export const topicsBySubject = {
     { name: 'Sinapses e Receptores Sensoriais', icon: '⚡', ids: ['fisio-59', 'fisio-60', 'fisio-61', 'fisio-62', 'fisio-63', 'fisio-64', 'fisio-65', 'fisio-67', 'fisio-68', 'fisio-69', 'fisio-70', 'fisio-71', 'fisio-72', 'fisio-73'] },
     { name: 'Sistema Endócrino', icon: '⚙️', ids: ['fisio-16', 'fisio-20', 'fisio-22', 'fisio-23', 'fisio-24', 'fisio-79'] },
     { name: 'Homeostase e Regulação', icon: '🎯', ids: ['fisio-76', 'fisio-77', 'fisio-78'] },
-    { name: 'Fisiologia Digestória', icon: '🍽️', ids: ['fisio-18', 'fisio-19', 'fisio-21'] },
+    { name: 'Fisiologia Digestória', icon: '🍽️', ids: ['fisio-18', 'fisio-19', 'fisio-21', 'fisio-107', 'fisio-108', 'fisio-109', 'fisio-110'] },
     { name: 'Equilíbrio Ácido-Base', icon: '⚖️', ids: ['fisio-25', 'fisio-26', 'fisio-27', 'fisio-28', 'fisio-29', 'fisio-30'] },
     { name: 'Sistema Imunológico', icon: '🛡️', ids: ['fisio-31', 'fisio-32', 'fisio-33', 'fisio-34'] },
     { name: 'Hemostasia', icon: '🩸', ids: ['fisio-43', 'fisio-44', 'fisio-45', 'fisio-46'] },

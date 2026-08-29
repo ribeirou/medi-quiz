@@ -2202,6 +2202,40 @@ export const questions = [
     answerIndex: 1,
     explanation: 'A cianose aparece quando a quantidade de hemoglobina desoxigenada no sangue está elevada — situação comum em quadros de hipoxemia (baixa oxigenação do sangue), como em doenças pulmonares restritivas avançadas.',
   },
+  {
+    id: 'fisio-107',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'A colecistocinina (CCK), hormônio liberado pelo intestino delgado, tem qual função principal?',
+    options: ['Inibir a digestão completamente', 'Estimular enzimas pancreáticas e a liberação de bile pela vesícula', 'Aumentar a secreção de ácido gástrico', 'Produzir insulina no pâncreas'],
+    answerIndex: 1,
+    explanation: 'A CCK, liberada pelo intestino delgado em resposta à chegada de gordura no duodeno, estimula a secreção de enzimas pancreáticas e a contração da vesícula biliar, liberando bile.',
+  },
+  {
+    id: 'fisio-108',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'A secretina, liberada pelo intestino delgado quando o quimo ácido chega do estômago, tem qual efeito?',
+    options: ['Estimula bicarbonato pancreático e inibe o HCl gástrico', 'Aumenta a acidez do quimo', 'Estimula só a contração da vesícula biliar', 'Inibe totalmente a digestão de proteínas'],
+    answerIndex: 0,
+    explanation: 'A secretina estimula o pâncreas a liberar bicarbonato, que neutraliza a acidez do quimo, e inibe a secreção adicional de ácido clorídrico pelo estômago — regulando o pH do conteúdo intestinal.',
+  },
+  {
+    id: 'fisio-109',
+    subject: 'fisiologia',
+    type: 'dissertativa',
+    question: 'Explique como a bile atua na digestão de lipídios, e o que estimula sua liberação da vesícula biliar.',
+    answer: 'A bile contém sais biliares e fosfolipídios que emulsificam grandes glóbulos de gordura em pequenas gotículas de lipídio, aumentando a área de superfície disponível para a ação das lipases — uma etapa essencial para a digestão e absorção de lipídios. Sua liberação da vesícula biliar é estimulada principalmente pela colecistocinina (CCK), secretada pelo intestino delgado quando quimo rico em gordura chega ao duodeno.',
+  },
+  {
+    id: 'fisio-110',
+    subject: 'fisiologia',
+    type: 'mcq',
+    question: 'A fase cefálica da secreção gástrica é desencadeada por:',
+    options: ['Distensão do estômago pelo alimento', 'Visão, cheiro e sabor do alimento, via reflexos que envolvem o bulbo', 'Chegada do quimo ao duodeno', 'Liberação de secretina'],
+    answerIndex: 1,
+    explanation: 'A fase cefálica começa antes mesmo do alimento chegar ao estômago: a visão, o cheiro e o sabor do alimento ativam reflexos longos, com um neurônio sensitivo enviando o sinal até o bulbo (medula oblonga), que estimula as células gástricas a começarem a secretar sucos digestivos.',
+  },
 
   // Bioquímica
   {
