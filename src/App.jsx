@@ -5,12 +5,15 @@ import { getSubjectStats, getXP, getStreak } from './lib/progress'
 import { getTheme, setTheme } from './lib/theme'
 import SubjectCoverflow from './components/SubjectCoverflow'
 import ParticleField from './components/ParticleField'
+import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
 import { getFases } from './lib/trilha'
+import { getSubjectTopics } from './data/topics'
 
 export default function App() {
   const [activeSubjectId, setActiveSubjectId] = useState(null)
+  const [activeTopicIndex, setActiveTopicIndex] = useState(null)
   const [activeFaseIndex, setActiveFaseIndex] = useState(null)
 
   const questionsBySubject = useMemo(() => {
@@ -22,13 +25,24 @@ export default function App() {
   }, [])
 
   const activeSubject = subjects.find((s) => s.id === activeSubjectId)
+  const topics = useMemo(
+    () => (activeSubject ? getSubjectTopics(activeSubject.id, questions) : []),
+    [activeSubject]
+  )
+  const activeTopic = activeTopicIndex !== null ? topics[activeTopicIndex] : null
   const fases = useMemo(
-    () => (activeSubject ? getFases(questionsBySubject[activeSubject.id]) : []),
-    [activeSubject, questionsBySubject]
+    () => (activeTopic ? getFases(activeTopic.questions) : []),
+    [activeTopic]
   )
 
   const screen =
-    activeSubject && activeFaseIndex !== null ? 'quiz' : activeSubject ? 'trilha' : 'grid'
+    activeTopic && activeFaseIndex !== null
+      ? 'quiz'
+      : activeTopic
+        ? 'trilha'
+        : activeSubject
+          ? 'topics'
+          : 'grid'
 
   return (
     <AnimatePresence mode="wait">
@@ -59,8 +73,27 @@ export default function App() {
         >
           <TrilhaScreen
             subject={activeSubject}
+            title={`${activeTopic.icon} ${activeTopic.name}`}
+            backLabel="← Tópicos"
             fases={fases}
             onSelectFase={setActiveFaseIndex}
+            onExit={() => setActiveTopicIndex(null)}
+          />
+        </motion.div>
+      )}
+
+      {screen === 'topics' && (
+        <motion.div
+          key="topics"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.25 }}
+        >
+          <TopicScreen
+            subject={activeSubject}
+            topics={topics}
+            onSelectTopic={setActiveTopicIndex}
             onExit={() => setActiveSubjectId(null)}
           />
         </motion.div>

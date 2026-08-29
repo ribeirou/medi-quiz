@@ -26,7 +26,7 @@ function pointsToPath(points) {
   return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
 }
 
-export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
+export default function TrilhaScreen({ subject, fases, onSelectFase, onExit, title, backLabel = '← Matérias' }) {
   const points = buildTrilhaPoints(fases.length)
   const trackHeight = fases.length > 0 ? (fases.length - 1) * NODE_STEP + NODE_SIZE : 0
   const pathD = pointsToPath(points)
@@ -38,10 +38,10 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
           onClick={onExit}
           className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 transition-colors cursor-pointer flex items-center gap-1"
         >
-          ← Matérias
+          {backLabel}
         </button>
         <span className="text-sm font-semibold" style={{ color: subject.color }}>
-          {subject.name}
+          {title || subject.name}
         </span>
       </div>
 
