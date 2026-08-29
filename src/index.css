@@ -1,19 +1,5 @@
 @import "tailwindcss";
-
-:root {
-  --color-bg: #f8fafc;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-text: #0f172a;
-  --color-text-muted: #64748b;
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-soft: #eff6ff;
-  --color-success: #16a34a;
-  --color-success-soft: #f0fdf4;
-  --color-error: #dc2626;
-  --color-error-soft: #fef2f2;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
   box-sizing: border-box;
@@ -21,12 +7,11 @@
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300;
 }
 
 #root {
@@ -34,6 +19,10 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: #60a5fa;
 }

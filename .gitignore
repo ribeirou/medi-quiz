@@ -28,3 +28,5 @@ reference-material/
 *.njsproj
 *.sln
 *.sw?
+
+.vercel

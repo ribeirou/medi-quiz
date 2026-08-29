@@ -36,7 +36,7 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
       <div className="flex items-center justify-between mb-8">
         <button
           onClick={onExit}
-          className="text-sm text-slate-500 hover:text-slate-800 transition-colors cursor-pointer flex items-center gap-1"
+          className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 transition-colors cursor-pointer flex items-center gap-1"
         >
           ← Matérias
         </button>
@@ -82,7 +82,7 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
               aria-label={`Fase ${fase.number}${isDone ? ', concluída' : answered > 0 ? `, ${answered} de ${total} respondidas` : ''}`}
             >
               <svg width="64" height="64" viewBox="0 0 64 64">
-                <circle cx="32" cy="32" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="4" />
+                <circle cx="32" cy="32" r={radius} fill="none" className="text-slate-200 dark:text-slate-700" stroke="currentColor" strokeWidth="4" />
                 {fraction > 0 && (
                   <circle
                     cx="32"
@@ -101,8 +101,16 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
                   cx="32"
                   cy="32"
                   r="22"
-                  fill={isDone ? subject.color : 'white'}
-                  stroke={isDone ? subject.color : '#cbd5e1'}
+                  fill={isDone ? subject.color : 'currentColor'}
+                  className={isDone ? '' : 'text-white dark:text-slate-800'}
+                />
+                <circle
+                  cx="32"
+                  cy="32"
+                  r="22"
+                  fill="none"
+                  stroke={isDone ? subject.color : 'currentColor'}
+                  className={isDone ? '' : 'text-slate-300 dark:text-slate-600'}
                   strokeWidth="2"
                 />
                 <text
@@ -112,13 +120,14 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
                   dominantBaseline="central"
                   fontSize={isDone ? 20 : 16}
                   fontWeight="600"
-                  fill={isDone ? 'white' : '#334155'}
+                  fill={isDone ? 'white' : 'currentColor'}
+                  className={isDone ? '' : 'text-slate-700 dark:text-slate-200'}
                 >
                   {isDone ? '✓' : fase.number}
                 </text>
               </svg>
               {answered > 0 && !isDone && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-max text-xs text-slate-400 text-center">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-max text-xs text-slate-400 dark:text-slate-500 text-center">
                   {answered}/{total}
                 </div>
               )}

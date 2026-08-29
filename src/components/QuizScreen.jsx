@@ -51,15 +51,15 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={onExit}
-          className="text-sm text-slate-500 hover:text-slate-800 transition-colors cursor-pointer flex items-center gap-1"
+          className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 transition-colors cursor-pointer flex items-center gap-1"
         >
           {backLabel}
         </button>
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-orange-600 flex items-center gap-1">
+          <span className="text-sm font-medium text-orange-600 dark:text-orange-400 flex items-center gap-1">
             ðŸ”¥ {streak.count}
           </span>
-          <span className="relative text-sm font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+          <span className="relative text-sm font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 px-2.5 py-1 rounded-full">
             {xp} XP
             <AnimatePresence>
               {xpPop && (
@@ -75,13 +75,13 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
               )}
             </AnimatePresence>
           </span>
-          <span className="text-sm font-medium text-slate-500">
+          <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
             {index + 1}/{questions.length}
           </span>
         </div>
       </div>
 
-      <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden mb-8">
+      <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-8">
         <motion.div
           className="h-full rounded-full"
           style={{ backgroundColor: subject.color }}
@@ -106,7 +106,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
             {question.type === 'mcq' ? 'MÃºltipla escolha' : 'Dissertativa'}
           </span>
 
-          <h2 className="text-xl font-semibold text-slate-900 mb-4 leading-snug">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4 leading-snug">
             {question.question}
           </h2>
 
@@ -115,7 +115,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
               <img
                 src={question.image.url}
                 alt={question.image.alt}
-                className="w-full max-h-96 object-contain rounded-xl border border-slate-200 bg-white"
+                className="w-full max-h-96 object-contain rounded-xl border border-slate-200 dark:border-slate-700 bg-white"
               />
               {question.image.credit && (
                 <p className="text-xs text-slate-400 mt-1.5">{question.image.credit}</p>
@@ -144,7 +144,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
         <button
           onClick={goPrev}
           disabled={isFirst}
-          className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 disabled:opacity-0 disabled:pointer-events-none transition-colors cursor-pointer"
+          className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-0 disabled:pointer-events-none transition-colors cursor-pointer"
         >
           Anterior
         </button>
@@ -167,11 +167,11 @@ function McqBody({ question, selected, onSelect }) {
         const isSelected = selected === i
         const isCorrect = i === question.answerIndex
         const showState = selected !== null
-        let stateClasses = 'border-slate-200 hover:border-slate-300 bg-white'
+        let stateClasses = 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800'
         if (showState && isCorrect) {
-          stateClasses = 'border-green-500 bg-green-50'
+          stateClasses = 'border-green-500 dark:border-green-500 bg-green-50 dark:bg-green-950/40'
         } else if (showState && isSelected && !isCorrect) {
-          stateClasses = 'border-red-500 bg-red-50'
+          stateClasses = 'border-red-500 dark:border-red-500 bg-red-50 dark:bg-red-950/40'
         }
 
         return (
@@ -184,9 +184,9 @@ function McqBody({ question, selected, onSelect }) {
             transition={{ duration: 0.3 }}
             className={`w-full text-left px-4 py-3 rounded-xl border-2 transition-colors flex items-center justify-between gap-3 ${stateClasses} ${selected === null ? 'cursor-pointer' : ''}`}
           >
-            <span className="text-sm text-slate-800">{opt}</span>
-            {showState && isCorrect && <span className="text-green-600 text-sm font-medium shrink-0">âœ“ Correta</span>}
-            {showState && isSelected && !isCorrect && <span className="text-red-600 text-sm font-medium shrink-0">âœ•</span>}
+            <span className="text-sm text-slate-800 dark:text-slate-100">{opt}</span>
+            {showState && isCorrect && <span className="text-green-600 dark:text-green-400 text-sm font-medium shrink-0">âœ“ Correta</span>}
+            {showState && isSelected && !isCorrect && <span className="text-red-600 dark:text-red-400 text-sm font-medium shrink-0">âœ•</span>}
           </motion.button>
         )
       })}
@@ -197,7 +197,7 @@ function McqBody({ question, selected, onSelect }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="text-sm text-slate-500 pt-2 leading-relaxed"
+            className="text-sm text-slate-500 dark:text-slate-400 pt-2 leading-relaxed"
           >
             {question.explanation}
           </motion.p>
@@ -224,7 +224,7 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
     <div>
       {!revealed && (
         <div>
-          <label htmlFor={`answer-${question.id}`} className="block text-xs font-semibold text-slate-500 mb-1.5">
+          <label htmlFor={`answer-${question.id}`} className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
             Sua resposta
           </label>
           <textarea
@@ -233,11 +233,11 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
             onChange={handleChange}
             rows={5}
             placeholder="Escreva sua resposta antes de ver o gabarito..."
-            className="w-full rounded-xl border-2 border-slate-200 p-3 text-sm text-slate-800 focus:border-blue-400 focus:outline-none resize-y mb-3"
+            className="w-full rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-3 text-sm text-slate-800 dark:text-slate-100 focus:border-blue-400 dark:focus:border-blue-500 focus:outline-none resize-y mb-3"
           />
           <button
             onClick={onReveal}
-            className="px-4 py-2.5 rounded-lg border-2 border-slate-200 text-sm font-medium text-slate-700 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-700 dark:hover:text-blue-400 transition-colors cursor-pointer"
           >
             Ver gabarito
           </button>
@@ -253,15 +253,15 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
             className="overflow-hidden"
           >
             <div className="grid sm:grid-cols-2 gap-3 mb-4">
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-                <p className="text-xs font-semibold text-slate-500 mb-1.5">Sua resposta</p>
-                <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
-                  {draft || <span className="text-slate-400 italic">Nenhuma resposta escrita</span>}
+              <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-4">
+                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5">Sua resposta</p>
+                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed whitespace-pre-wrap">
+                  {draft || <span className="text-slate-400 dark:text-slate-500 italic">Nenhuma resposta escrita</span>}
                 </p>
               </div>
-              <div className="rounded-xl bg-blue-50 border border-blue-100 p-4">
-                <p className="text-xs font-semibold text-blue-700 mb-1.5">Resposta modelo</p>
-                <p className="text-sm text-slate-700 leading-relaxed">{question.answer}</p>
+              <div className="rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 p-4">
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-1.5">Resposta modelo</p>
+                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">{question.answer}</p>
               </div>
             </div>
 
@@ -282,7 +282,7 @@ function DissertativaBody({ question, revealed, onReveal, onSelfCheck }) {
               </div>
             )}
             {revealed === 'done' && (
-              <p className="text-sm text-slate-500">Resposta registrada.</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Resposta registrada.</p>
             )}
           </motion.div>
         )}
