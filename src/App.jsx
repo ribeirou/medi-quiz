@@ -1,5 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+
+gsap.registerPlugin(SplitText)
 import { subjects, questions } from './data/questions'
 import { getSubjectStats, getXP, getStreak } from './lib/progress'
 import { getTheme, setTheme } from './lib/theme'
@@ -131,6 +135,31 @@ export default function App() {
 function Hero() {
   const xp = getXP()
   const streak = getStreak()
+  const titleRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || !titleRef.current) return
+
+    const line1 = titleRef.current.querySelector('.hero-line1')
+    const line2 = titleRef.current.querySelector('.hero-line2')
+    const split = new SplitText(line1, { type: 'words' })
+
+    const tl = gsap.timeline()
+    tl.from(split.words, {
+      opacity: 0,
+      y: 20,
+      rotateX: -40,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'expo.out',
+    }).from(line2, { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' }, '-=0.25')
+
+    return () => {
+      tl.kill()
+      split.revert()
+    }
+  }, [])
 
   return (
     <section className="relative overflow-hidden border-b border-slate-100 dark:border-slate-800">
@@ -170,20 +199,19 @@ function Hero() {
             Medicina · USCS
           </motion.span>
         </motion.div>
-        <motion.h1
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
+        <h1
+          ref={titleRef}
           className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight"
         >
-          Revisão por matéria,<br className="hidden sm:block" />{' '}
+          <span className="hero-line1">Revisão por matéria,</span>
+          <br className="hidden sm:block" />{' '}
           <span
-            className="animate-gradient-text bg-clip-text text-transparent"
+            className="hero-line2 animate-gradient-text bg-clip-text text-transparent inline-block"
             style={{ backgroundImage: 'linear-gradient(90deg, #2563eb, #7c3aed, #2563eb)' }}
           >
             no seu ritmo
           </span>
-        </motion.h1>
+        </h1>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

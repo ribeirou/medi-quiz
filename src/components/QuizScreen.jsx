@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { recordAnswer, getDraft, saveDraft, getXP, getStreak } from '../lib/progress'
+import confetti from 'canvas-confetti'
+import { recordAnswer, getDraft, saveDraft, getXP, getStreak, getAnsweredIds } from '../lib/progress'
 
 export default function QuizScreen({ subject, questions, onExit, backLabel = 'â† MatÃ©rias' }) {
   const [index, setIndex] = useState(0)
@@ -24,6 +25,21 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
     setSelected(null)
     setRevealed(false)
     setIndex((i) => Math.max(i - 1, 0))
+  }
+
+  function handleFinish() {
+    const answeredIds = getAnsweredIds(subject.id)
+    const faseComplete = questions.every((q) => answeredIds.includes(q.id))
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (faseComplete && !reduced) {
+      confetti({
+        particleCount: 120,
+        spread: 75,
+        origin: { y: 0.6 },
+        colors: [subject.color, '#ffffff', '#facc15'],
+      })
+    }
+    onExit()
   }
 
   function celebrate(amount) {
@@ -157,7 +173,7 @@ export default function QuizScreen({ subject, questions, onExit, backLabel = 'â†
           Anterior
         </motion.button>
         <motion.button
-          onClick={isLast ? onExit : goNext}
+          onClick={isLast ? handleFinish : goNext}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.95 }}
           className="px-5 py-2 rounded-lg text-sm font-medium text-white transition-colors cursor-pointer"
