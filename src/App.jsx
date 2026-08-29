@@ -200,20 +200,6 @@ function Hero() {
         <ThemeToggle />
       </div>
       <div className="max-w-4xl mx-auto px-4 pt-16 pb-14 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="inline-block mb-4"
-        >
-          <motion.span
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
-          >
-            Medicina · USCS
-          </motion.span>
-        </motion.div>
         <h1
           ref={titleRef}
           className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight"

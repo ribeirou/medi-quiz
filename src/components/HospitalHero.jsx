@@ -108,11 +108,8 @@ export default function HospitalHero({ onEnter }) {
           className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
           style={{ opacity: reducedMotion || ready ? 1 : 0, transition: 'opacity 0.6s ease' }}
         >
-          <span className="text-xs font-semibold tracking-widest uppercase text-blue-300 mb-3">
-            Medicina · USCS
-          </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight max-w-2xl">
-            Bem-vinda ao Medi Quiz
+            Bem-vindo ao Medi Quiz
           </h1>
           <p className="mt-4 text-slate-200 max-w-md">
             Cada porta que se abre é uma matéria a menos entre você e a prova.
