@@ -6,6 +6,10 @@ import { initTheme } from './lib/theme'
 
 initTheme()
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
