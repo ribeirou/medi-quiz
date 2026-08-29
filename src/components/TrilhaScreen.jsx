@@ -2,8 +2,35 @@ import { motion } from 'framer-motion'
 import { getFaseProgress } from '../lib/progress'
 
 const OFFSETS = [0, 72, 0, -72]
+const NODE_SIZE = 64
+const NODE_GAP = 24
+const NODE_STEP = NODE_SIZE + NODE_GAP
+const NODE_RADIUS = 32
+// Horizontal span of the zigzag itself (independent of the container's
+// actual rendered width), centered the same way the nodes are centered
+// (flex items-center + a fixed-px x offset), so the path can be centered
+// with the same left-1/2 / -translate-x-1/2 trick and line up 1:1 with
+// the node centers at any viewport width.
+const TRACK_WIDTH = NODE_SIZE + 2 * Math.max(...OFFSETS.map(Math.abs))
+const TRACK_CENTER = TRACK_WIDTH / 2
+
+function buildTrilhaPoints(count) {
+  return Array.from({ length: count }, (_, i) => ({
+    x: TRACK_CENTER + OFFSETS[i % OFFSETS.length],
+    y: i * NODE_STEP + NODE_RADIUS,
+  }))
+}
+
+function pointsToPath(points) {
+  if (points.length === 0) return ''
+  return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ')
+}
 
 export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
+  const points = buildTrilhaPoints(fases.length)
+  const trackHeight = fases.length > 0 ? (fases.length - 1) * NODE_STEP + NODE_SIZE : 0
+  const pathD = pointsToPath(points)
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
@@ -19,11 +46,23 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
       </div>
 
       <div className="relative flex flex-col items-center gap-6 pb-12">
-        <div
-          className="absolute top-0 bottom-0 border-l-2 border-dashed"
-          style={{ borderColor: `${subject.color}33`, left: '50%' }}
-          aria-hidden="true"
-        />
+        {pathD && (
+          <svg
+            className="absolute top-0 left-1/2 -translate-x-1/2 z-0"
+            width={TRACK_WIDTH}
+            height={trackHeight}
+            viewBox={`0 0 ${TRACK_WIDTH} ${trackHeight}`}
+            aria-hidden="true"
+          >
+            <path
+              d={pathD}
+              stroke={`${subject.color}33`}
+              strokeWidth="3"
+              strokeDasharray="6 6"
+              fill="none"
+            />
+          </svg>
+        )}
         {fases.map((fase, index) => {
           const { answered, total } = getFaseProgress(fase, subject.id)
           const isDone = total > 0 && answered === total
@@ -39,8 +78,8 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
               animate={{ opacity: 1, y: 0, x: OFFSETS[index % OFFSETS.length] }}
               transition={{ delay: index * 0.06, type: 'spring', stiffness: 300, damping: 25 }}
               whileTap={{ scale: 0.95 }}
-              className="relative z-10 cursor-pointer"
-              aria-label={`Fase ${fase.number}${isDone ? ', concluída' : ''}`}
+              className="relative z-10 cursor-pointer focus-visible:outline-2 focus-visible:outline-blue-600"
+              aria-label={`Fase ${fase.number}${isDone ? ', concluída' : answered > 0 ? `, ${answered} de ${total} respondidas` : ''}`}
             >
               <svg width="64" height="64" viewBox="0 0 64 64">
                 <circle cx="32" cy="32" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="4" />
@@ -78,6 +117,11 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
                   {isDone ? '✓' : fase.number}
                 </text>
               </svg>
+              {answered > 0 && !isDone && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-max text-xs text-slate-400 text-center">
+                  {answered}/{total}
+                </div>
+              )}
             </motion.button>
           )
         })}
