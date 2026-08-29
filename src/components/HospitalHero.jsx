@@ -37,8 +37,10 @@ export default function HospitalHero({ onEnter }) {
     })
   }
 
+  // Ambient looping video: plays for everyone, including reduced-motion —
+  // it's a static-camera clip (no pan/zoom/parallax), not the kind of
+  // motion prefers-reduced-motion is meant to suppress.
   useEffect(() => {
-    if (reducedMotion) return
     const video = videoRef.current
     if (!video) return
 
@@ -47,6 +49,13 @@ export default function HospitalHero({ onEnter }) {
       video.play().catch(() => {})
     }
     video.addEventListener('loadedmetadata', onLoaded)
+    return () => video.removeEventListener('loadedmetadata', onLoaded)
+  }, [])
+
+  // Scroll-hijacking pin/scrub is the disruptive motion — skip it under
+  // reduced-motion, users get the plain "Começar" button instead.
+  useEffect(() => {
+    if (reducedMotion) return
 
     stRef.current = ScrollTrigger.create({
       trigger: wrapperRef.current,
@@ -61,10 +70,7 @@ export default function HospitalHero({ onEnter }) {
       onLeave: enter,
     })
 
-    return () => {
-      video.removeEventListener('loadedmetadata', onLoaded)
-      stRef.current?.kill()
-    }
+    return () => stRef.current?.kill()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reducedMotion])
 
@@ -79,9 +85,9 @@ export default function HospitalHero({ onEnter }) {
           className="absolute inset-0 w-full h-full object-cover"
           src="/videos/hospital-hallway.mp4"
           muted
-          loop={!reducedMotion}
+          loop
           playsInline
-          preload={reducedMotion ? 'metadata' : 'auto'}
+          preload="auto"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/70" />
 
