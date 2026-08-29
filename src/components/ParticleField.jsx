@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 const DENSITY = 9000
 const MAX_LINK_DIST = 120
-const SPEED = 0.15
+const SPEED = 0.3
 
 export default function ParticleField({ className = '' }) {
   const canvasRef = useRef(null)

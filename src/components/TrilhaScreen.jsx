@@ -54,12 +54,15 @@ export default function TrilhaScreen({ subject, fases, onSelectFase, onExit }) {
             viewBox={`0 0 ${TRACK_WIDTH} ${trackHeight}`}
             aria-hidden="true"
           >
-            <path
+            <motion.path
               d={pathD}
               stroke={`${subject.color}33`}
               strokeWidth="3"
               strokeDasharray="6 6"
               fill="none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             />
           </svg>
         )}
