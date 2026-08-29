@@ -5,7 +5,7 @@ import { SplitText } from 'gsap/SplitText'
 
 gsap.registerPlugin(SplitText)
 import { subjects, questions } from './data/questions'
-import { getSubjectStats, getWrongQuestions, getXP, getStreak } from './lib/progress'
+import { getDueQuestions, getSubjectStats, getWrongQuestions, getXP, getStreak } from './lib/progress'
 import { getTheme, setTheme } from './lib/theme'
 import SubjectCoverflow from './components/SubjectCoverflow'
 import ParticleField from './components/ParticleField'
@@ -25,6 +25,7 @@ export default function App() {
   const [activeFaseIndex, setActiveFaseIndex] = useState(null)
   const [reviewing, setReviewing] = useState(false)
   const [viewingStats, setViewingStats] = useState(false)
+  const [reviewingSpaced, setReviewingSpaced] = useState(false)
 
   const questionsBySubject = useMemo(() => {
     const map = {}
@@ -49,20 +50,23 @@ export default function App() {
     () => (reviewing && activeSubject ? getWrongQuestions(activeSubject.id, questions) : []),
     [reviewing, activeSubject]
   )
+  const dueQuestions = useMemo(() => getDueQuestions(questions), [])
 
   const screen = !entered
     ? 'home'
     : viewingStats
       ? 'stats'
-      : reviewing
-        ? 'review'
-        : activeTopic && activeFaseIndex !== null
-          ? 'quiz'
-          : activeTopic
-            ? 'trilha'
-            : activeSubject
-              ? 'topics'
-              : 'grid'
+      : reviewingSpaced
+        ? 'srs'
+        : reviewing
+          ? 'review'
+          : activeTopic && activeFaseIndex !== null
+            ? 'quiz'
+            : activeTopic
+              ? 'trilha'
+              : activeSubject
+                ? 'topics'
+                : 'grid'
 
   return (
     <AnimatePresence mode="wait">
@@ -108,6 +112,23 @@ export default function App() {
             questions={reviewQuestions}
             backLabel="← Tópicos"
             onExit={() => setReviewing(false)}
+          />
+        </motion.div>
+      )}
+
+      {screen === 'srs' && (
+        <motion.div
+          key="srs"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.25 }}
+        >
+          <QuizScreen
+            subjects={subjects}
+            questions={dueQuestions}
+            backLabel="← Início"
+            onExit={() => setReviewingSpaced(false)}
           />
         </motion.div>
       )}
@@ -169,7 +190,11 @@ export default function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <Hero onOpenStats={() => setViewingStats(true)} />
+          <Hero
+            onOpenStats={() => setViewingStats(true)}
+            onOpenSpacedReview={() => setReviewingSpaced(true)}
+            dueCount={dueQuestions.length}
+          />
           <main className="max-w-4xl mx-auto px-4 pb-16">
             <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-4 text-center">
               Escolha uma matéria
@@ -189,7 +214,7 @@ export default function App() {
   )
 }
 
-function Hero({ onOpenStats }) {
+function Hero({ onOpenStats, onOpenSpacedReview, dueCount }) {
   const xp = getXP()
   const streak = getStreak()
   const titleRef = useRef(null)
@@ -223,6 +248,18 @@ function Hero({ onOpenStats }) {
       <ParticleField />
       <FloatingIcons />
       <div className="absolute top-4 right-4 flex items-center gap-2">
+        {dueCount > 0 && (
+          <motion.button
+            onClick={onOpenSpacedReview}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-full transition-colors cursor-pointer flex items-center gap-1"
+          >
+            🔁 Revisar hoje ({dueCount})
+          </motion.button>
+        )}
         {(xp > 0 || streak.count > 0) && (
           <>
             <span className="text-sm font-medium text-orange-600 dark:text-orange-400 bg-white/80 dark:bg-slate-800/80 backdrop-blur px-2.5 py-1 rounded-full border border-orange-100 dark:border-orange-900/50 flex items-center gap-1">
