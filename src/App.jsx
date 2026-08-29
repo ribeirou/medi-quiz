@@ -50,7 +50,7 @@ export default function App() {
     () => (reviewing && activeSubject ? getWrongQuestions(activeSubject.id, questions) : []),
     [reviewing, activeSubject]
   )
-  const dueQuestions = useMemo(() => getDueQuestions(questions), [reviewingSpaced])
+  const dueQuestions = getDueQuestions(questions)
 
   const screen = !entered
     ? 'home'
