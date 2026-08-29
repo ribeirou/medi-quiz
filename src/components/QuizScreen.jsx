@@ -3,12 +3,23 @@ import { AnimatePresence, motion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { recordAnswer, getDraft, saveDraft, getXP, getStreak, getAnsweredIds } from '../lib/progress'
 
-export default function QuizScreen({ subject, subjects, questions, onExit, backLabel = '← Matérias' }) {
+export default function QuizScreen({ subject, subjects, questions, onExit, backLabel = '← Matérias', timeLimitSeconds, onAnswer }) {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState(null)
   const [revealed, setRevealed] = useState(false)
   const [xp, setXp] = useState(getXP())
   const [xpPop, setXpPop] = useState(null)
+  const [timeLeft, setTimeLeft] = useState(timeLimitSeconds ?? null)
+
+  useEffect(() => {
+    if (timeLimitSeconds == null) return
+    if (timeLeft <= 0) {
+      onExit()
+      return
+    }
+    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000)
+    return () => clearTimeout(id)
+  }, [timeLimitSeconds, timeLeft, onExit])
 
   const question = questions[index]
   const activeSubject = subject || subjects.find((s) => s.id === question.subject)
@@ -54,11 +65,13 @@ export default function QuizScreen({ subject, subjects, questions, onExit, backL
     setSelected(optionIndex)
     const wasCorrect = optionIndex === question.answerIndex
     recordAnswer(activeSubject.id, question.id, wasCorrect)
+    onAnswer?.(wasCorrect)
     if (wasCorrect) celebrate(10)
   }
 
   function handleSelfCheck(wasCorrect) {
     recordAnswer(activeSubject.id, question.id, wasCorrect)
+    onAnswer?.(wasCorrect)
     setRevealed('done')
     if (wasCorrect) celebrate(10)
   }
@@ -101,6 +114,11 @@ export default function QuizScreen({ subject, subjects, questions, onExit, backL
           <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
             {index + 1}/{questions.length}
           </span>
+          {timeLimitSeconds != null && (
+            <span className="text-sm font-medium text-red-500 dark:text-red-400">
+              ⏱ {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
+            </span>
+          )}
         </div>
       </div>
 
