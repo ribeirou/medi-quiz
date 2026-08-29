@@ -2,7 +2,7 @@
 // Only question ids are listed here — the actual question objects live in questions.js.
 export const topicsBySubject = {
   anatomia: [
-    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38', 'anat-71', 'anat-72', 'anat-73', 'anat-74', 'anat-75', 'anat-76', 'anat-77', 'anat-78'] },
+    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38', 'anat-71', 'anat-72', 'anat-73', 'anat-74', 'anat-75', 'anat-76', 'anat-77', 'anat-78', 'anat-79', 'anat-80', 'anat-81'] },
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64', 'anat-65', 'anat-66', 'anat-67', 'anat-68', 'anat-69', 'anat-70'] },
     { name: 'Sistema Nervoso', icon: '🧠', ids: ['anat-2', 'anat-11', 'anat-12', 'anat-15', 'anat-17', 'anat-18', 'anat-19', 'anat-32', 'anat-33', 'anat-36'] },
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
@@ -13,7 +13,7 @@ export const topicsBySubject = {
   ],
   histologia: [
     { name: 'Tecidos Epitelial e Conjuntivo', icon: '🧵', ids: ['histo-1', 'histo-2', 'histo-14', 'histo-15', 'histo-17', 'histo-18'] },
-    { name: 'Patologia Geral', icon: '🔬', ids: ['histo-4', 'histo-5', 'histo-6', 'histo-8'] },
+    { name: 'Patologia Geral', icon: '🔬', ids: ['histo-4', 'histo-5', 'histo-6', 'histo-8', 'histo-54', 'histo-55', 'histo-56', 'histo-57', 'histo-58'] },
     { name: 'Tecido Muscular e Vascular', icon: '💪', ids: ['histo-7', 'histo-9', 'histo-10'] },
     { name: 'Tecido Nervoso', icon: '🧠', ids: ['histo-11', 'histo-12', 'histo-16', 'histo-48', 'histo-49', 'histo-50', 'histo-51', 'histo-52', 'histo-53'] },
     { name: 'Tecido Ósseo e Cartilaginoso', icon: '🦴', ids: ['histo-3', 'histo-19', 'histo-20', 'histo-21', 'histo-22', 'histo-23'] },
@@ -57,7 +57,7 @@ export const topicsBySubject = {
   ],
   habilidades: [
     { name: 'Sinais Vitais', icon: '🌡️', ids: ['hab-1', 'hab-2', 'hab-3', 'hab-10', 'hab-12', 'hab-24'] },
-    { name: 'Anamnese e Exame Geral', icon: '📋', ids: ['hab-4', 'hab-6', 'hab-11', 'hab-19', 'hab-20', 'hab-21', 'hab-22', 'hab-23'] },
+    { name: 'Anamnese e Exame Geral', icon: '📋', ids: ['hab-4', 'hab-6', 'hab-11', 'hab-19', 'hab-20', 'hab-21', 'hab-22', 'hab-23', 'hab-44', 'hab-45', 'hab-46', 'hab-47'] },
     { name: 'Exame Cardiovascular', icon: '🫀', ids: ['hab-5', 'hab-7', 'hab-9'] },
     { name: 'Exame Respiratório', icon: '🫁', ids: ['hab-15', 'hab-16', 'hab-17'] },
     { name: 'Exame Abdominal', icon: '🍽️', ids: ['hab-8', 'hab-25', 'hab-26', 'hab-27', 'hab-28'] },
