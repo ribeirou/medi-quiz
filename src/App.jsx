@@ -3,10 +3,13 @@ import { motion } from 'framer-motion'
 import { subjects, questions } from './data/questions'
 import { getSubjectStats, getXP, getStreak } from './lib/progress'
 import SubjectCoverflow from './components/SubjectCoverflow'
+import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
+import { getFases } from './lib/trilha'
 
 export default function App() {
   const [activeSubjectId, setActiveSubjectId] = useState(null)
+  const [activeFaseIndex, setActiveFaseIndex] = useState(null)
 
   const questionsBySubject = useMemo(() => {
     const map = {}
@@ -17,12 +20,28 @@ export default function App() {
   }, [])
 
   const activeSubject = subjects.find((s) => s.id === activeSubjectId)
+  const fases = useMemo(
+    () => (activeSubject ? getFases(questionsBySubject[activeSubject.id]) : []),
+    [activeSubject, questionsBySubject]
+  )
 
-  if (activeSubject) {
+  if (activeSubject && activeFaseIndex !== null) {
     return (
       <QuizScreen
         subject={activeSubject}
-        questions={questionsBySubject[activeSubject.id]}
+        questions={fases[activeFaseIndex].questions}
+        backLabel="← Fases"
+        onExit={() => setActiveFaseIndex(null)}
+      />
+    )
+  }
+
+  if (activeSubject) {
+    return (
+      <TrilhaScreen
+        subject={activeSubject}
+        fases={fases}
+        onSelectFase={setActiveFaseIndex}
         onExit={() => setActiveSubjectId(null)}
       />
     )
