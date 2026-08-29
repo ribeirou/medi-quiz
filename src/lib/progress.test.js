@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { exportProgress, getWrongIds, getWrongQuestions, importProgress, recordAnswer } from './progress.js'
+import { getWrongIds, getWrongQuestions, recordAnswer } from './progress.js'
 
 function createLocalStorageMock() {
   let store = {}
@@ -57,34 +57,5 @@ describe('getWrongQuestions', () => {
 
   it('returns an empty array when there are no wrong answers for the subject', () => {
     expect(getWrongQuestions('anatomia', allQuestions)).toEqual([])
-  })
-})
-
-describe('exportProgress / importProgress', () => {
-  it('exports the xp value under data.medi-quiz-xp', () => {
-    recordAnswer('anatomia', 'anat-1', true)
-
-    const payload = exportProgress()
-
-    expect(payload.version).toBe(1)
-    expect(payload.data['medi-quiz-xp']).toBe(10)
-  })
-
-  it('round-trips: importing a previously exported payload restores the xp value', () => {
-    recordAnswer('anatomia', 'anat-1', true)
-    const payload = exportProgress()
-
-    globalThis.localStorage.clear()
-    expect(getWrongIds('anatomia')).toEqual([])
-
-    const ok = importProgress(payload)
-
-    expect(ok).toBe(true)
-    expect(JSON.parse(globalThis.localStorage.getItem('medi-quiz-xp'))).toBe(10)
-  })
-
-  it('rejects a payload with no data field', () => {
-    expect(importProgress({ version: 1 })).toBe(false)
-    expect(importProgress(null)).toBe(false)
   })
 })

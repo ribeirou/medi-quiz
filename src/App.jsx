@@ -14,7 +14,6 @@ import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
 import HospitalHero from './components/HospitalHero'
-import ProgressBackup from './components/ProgressBackup'
 import { getFases } from './lib/trilha'
 import { getSubjectTopics } from './data/topics'
 
@@ -224,7 +223,6 @@ function Hero() {
             </span>
           </>
         )}
-        <ProgressBackup />
         <ThemeToggle />
       </div>
       <div className="max-w-4xl mx-auto px-4 pt-16 pb-14 text-center">
