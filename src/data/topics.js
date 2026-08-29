@@ -8,6 +8,7 @@ export const topicsBySubject = {
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
     { name: 'Sistema Osteoarticular e Muscular', icon: '🦴', ids: ['anat-1', 'anat-3', 'anat-20', 'anat-21', 'anat-23', 'anat-24', 'anat-25', 'anat-26', 'anat-27', 'anat-34', 'anat-35', 'anat-44', 'anat-45', 'anat-46', 'anat-47', 'anat-48', 'anat-49'] },
     { name: 'Sistema Urinário', icon: '💧', ids: ['anat-22', 'anat-39', 'anat-40', 'anat-41', 'anat-42', 'anat-43'] },
+    { name: 'Sistema Reprodutor', icon: '🌸', ids: ['anat-50', 'anat-51', 'anat-52', 'anat-53'] },
   ],
   histologia: [
     { name: 'Tecidos Epitelial e Conjuntivo', icon: '🧵', ids: ['histo-1', 'histo-2', 'histo-14', 'histo-15', 'histo-17', 'histo-18'] },
@@ -19,10 +20,11 @@ export const topicsBySubject = {
     { name: 'Sistema Urinário', icon: '💧', ids: ['histo-13', 'histo-27', 'histo-28'] },
     { name: 'Sistema Endócrino', icon: '⚙️', ids: ['histo-31', 'histo-32', 'histo-33'] },
     { name: 'Sistema Digestório e Glândulas', icon: '🍽️', ids: ['histo-29', 'histo-30', 'histo-34', 'histo-35', 'histo-36'] },
+    { name: 'Sistema Reprodutor', icon: '🌸', ids: ['histo-37', 'histo-38', 'histo-39'] },
   ],
   fisiologia: [
     { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9'] },
-    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35'] },
+    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
     { name: 'Fisiologia Neuromuscular', icon: '⚡', ids: ['fisio-1', 'fisio-13', 'fisio-14', 'fisio-15', 'fisio-17', 'fisio-39', 'fisio-40'] },
     { name: 'Sistema Nervoso Autônomo', icon: '🧠', ids: ['fisio-36', 'fisio-37', 'fisio-38', 'fisio-41', 'fisio-42'] },
