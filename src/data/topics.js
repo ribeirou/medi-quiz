@@ -9,7 +9,7 @@ export const topicsBySubject = {
     { name: 'Sistema Osteoarticular e Muscular', icon: '🦴', ids: ['anat-1', 'anat-3', 'anat-20', 'anat-21', 'anat-23', 'anat-24', 'anat-25', 'anat-26', 'anat-27', 'anat-34', 'anat-35', 'anat-44', 'anat-45', 'anat-46', 'anat-47', 'anat-48', 'anat-49'] },
     { name: 'Sistema Urinário', icon: '💧', ids: ['anat-22', 'anat-39', 'anat-40', 'anat-41', 'anat-42', 'anat-43'] },
     { name: 'Sistema Reprodutor', icon: '🌸', ids: ['anat-50', 'anat-51', 'anat-52', 'anat-53'] },
-    { name: 'Cabeça e Pescoço', icon: '💇', ids: ['anat-54', 'anat-55', 'anat-56'] },
+    { name: 'Cabeça e Pescoço', icon: '💇', ids: ['anat-54', 'anat-55', 'anat-56', 'anat-82', 'anat-83', 'anat-84', 'anat-85'] },
   ],
   histologia: [
     { name: 'Tecidos Epitelial e Conjuntivo', icon: '🧵', ids: ['histo-1', 'histo-2', 'histo-14', 'histo-15', 'histo-17', 'histo-18'] },
