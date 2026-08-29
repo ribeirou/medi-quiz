@@ -8,6 +8,12 @@ export default function HospitalHero({ onEnter }) {
   const [reducedMotion] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   )
+  // On phones, a fixed pixel-based scroll-jack distance (1500px of pin)
+  // takes many more swipes than on desktop (mouse-wheel covers more per
+  // tick) — feels like being stuck. Skip the scroll-lock there too and
+  // go straight to the plain "Começar" button, same as reduced-motion.
+  const [isNarrowViewport] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768)
+  const staticMode = reducedMotion || isNarrowViewport
   const wrapperRef = useRef(null)
   const stageRef = useRef(null)
   const videoRef = useRef(null)
@@ -53,9 +59,10 @@ export default function HospitalHero({ onEnter }) {
   }, [])
 
   // Scroll-hijacking pin/scrub is the disruptive motion — skip it under
-  // reduced-motion, users get the plain "Começar" button instead.
+  // reduced-motion or on narrow (phone) viewports, users get the plain
+  // "Começar" button instead.
   useEffect(() => {
-    if (reducedMotion) return
+    if (staticMode) return
 
     stRef.current = ScrollTrigger.create({
       trigger: wrapperRef.current,
@@ -72,13 +79,13 @@ export default function HospitalHero({ onEnter }) {
 
     return () => stRef.current?.kill()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reducedMotion])
+  }, [staticMode])
 
   return (
-    <div ref={wrapperRef} className="relative" style={reducedMotion ? undefined : { height: '250vh' }}>
+    <div ref={wrapperRef} className="relative" style={staticMode ? undefined : { height: '250vh' }}>
       <div
         ref={stageRef}
-        className={`${reducedMotion ? 'relative' : 'sticky top-0'} h-screen w-full overflow-hidden bg-slate-950 origin-center`}
+        className={`${staticMode ? 'relative' : 'sticky top-0'} h-screen w-full overflow-hidden bg-slate-950 origin-center`}
       >
         <video
           ref={videoRef}
@@ -94,7 +101,7 @@ export default function HospitalHero({ onEnter }) {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-slate-950/60" />
         <div className="absolute inset-0 shadow-[inset_0_0_180px_80px_rgba(2,6,23,0.8)]" />
 
-        {!reducedMotion && (
+        {!staticMode && (
           <button
             onClick={enter}
             className="absolute top-4 right-4 z-10 text-xs font-medium text-white/70 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-full border border-white/20 transition-colors cursor-pointer"
@@ -106,7 +113,7 @@ export default function HospitalHero({ onEnter }) {
         <div
           ref={titleRef}
           className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
-          style={{ opacity: reducedMotion || ready ? 1 : 0, transition: 'opacity 0.6s ease' }}
+          style={{ opacity: staticMode || ready ? 1 : 0, transition: 'opacity 0.6s ease' }}
         >
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight max-w-2xl">
             Bem-vindo ao Medi Quiz
@@ -114,7 +121,7 @@ export default function HospitalHero({ onEnter }) {
           <p className="mt-4 text-slate-200 max-w-md">
             Cada porta que se abre é uma matéria a menos entre você e a prova.
           </p>
-          {reducedMotion && (
+          {staticMode && (
             <button
               onClick={enter}
               className="mt-8 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors cursor-pointer"
@@ -124,7 +131,7 @@ export default function HospitalHero({ onEnter }) {
           )}
         </div>
 
-        {!reducedMotion && (
+        {!staticMode && (
           <div
             ref={scrollHintRef}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/80"
