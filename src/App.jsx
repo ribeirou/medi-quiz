@@ -13,10 +13,12 @@ import FloatingIcons from './components/FloatingIcons'
 import TopicScreen from './components/TopicScreen'
 import TrilhaScreen from './components/TrilhaScreen'
 import QuizScreen from './components/QuizScreen'
+import HospitalHero from './components/HospitalHero'
 import { getFases } from './lib/trilha'
 import { getSubjectTopics } from './data/topics'
 
 export default function App() {
+  const [entered, setEntered] = useState(false)
   const [activeSubjectId, setActiveSubjectId] = useState(null)
   const [activeTopicIndex, setActiveTopicIndex] = useState(null)
   const [activeFaseIndex, setActiveFaseIndex] = useState(null)
@@ -40,8 +42,9 @@ export default function App() {
     [activeTopic]
   )
 
-  const screen =
-    activeTopic && activeFaseIndex !== null
+  const screen = !entered
+    ? 'home'
+    : activeTopic && activeFaseIndex !== null
       ? 'quiz'
       : activeTopic
         ? 'trilha'
@@ -51,6 +54,18 @@ export default function App() {
 
   return (
     <AnimatePresence mode="wait">
+      {screen === 'home' && (
+        <motion.div
+          key="home"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <HospitalHero onEnter={() => setEntered(true)} />
+        </motion.div>
+      )}
+
       {screen === 'quiz' && (
         <motion.div
           key="quiz"
