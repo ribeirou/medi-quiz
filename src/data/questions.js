@@ -680,6 +680,42 @@ export const questions = [
     question: 'Descreva o trajeto do sangue pela pequena circulação (circulação pulmonar), do átrio direito até o átrio esquerdo.',
     answer: 'Sangue venoso chega ao átrio direito pelas veias cavas e pelo seio coronário → a contração atrial impulsiona o sangue pela valva tricúspide → ventrículo direito → a contração ventricular impulsiona o sangue pela valva pulmonar → tronco pulmonar → artérias pulmonares direita e esquerda → arteríolas e capilares pulmonares, onde ocorrem as trocas gasosas entre alvéolo e sangue → vênulas pulmonares → veias pulmonares → átrio esquerdo.',
   },
+  {
+    id: 'anat-75',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'Numa radiografia de tórax, o critério de penetração adequada é avaliado por:',
+    options: ['Contar 8 a 10 costelas posteriores acima do diafragma', 'Conseguir visualizar os contornos dos corpos vertebrais através da silhueta cardíaca', 'Distância igual entre clavícula e processo espinhoso', 'Presença das escápulas dentro do campo pulmonar'],
+    answerIndex: 1,
+    explanation: 'A penetração adequada é avaliada pela capacidade de visualizar os contornos dos corpos vertebrais por trás da silhueta cardíaca — uma imagem subpenetrada não mostra essas estruturas, e uma superpenetrada perde detalhe do parênquima pulmonar.',
+  },
+  {
+    id: 'anat-76',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'O critério de inspiração adequada numa radiografia de tórax é geralmente definido por:',
+    options: ['Visualizar de 8 a 10 costelas posteriores acima da cúpula do diafragma', 'Ausência total de estruturas ósseas visíveis', 'Silhueta cardíaca alargada', 'Presença de líquido pleural'],
+    answerIndex: 0,
+    explanation: 'Uma radiografia de tórax com inspiração adequada permite contar de 8 a 10 costelas posteriores acima da cúpula do diafragma. Inspiração insuficiente pode simular falsamente cardiomegalia ou congestão pulmonar.',
+  },
+  {
+    id: 'anat-77',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'Para avaliar rotação numa radiografia de tórax PA, compara-se:',
+    options: ['O tamanho dos dois pulmões', 'A distância entre a borda interna de cada clavícula e o processo espinhoso da vértebra correspondente, que deve ser igual dos dois lados', 'A posição do diafragma direito e esquerdo', 'O ângulo costofrênico'],
+    answerIndex: 1,
+    explanation: 'A rotação é avaliada comparando a distância entre a borda interna de cada clavícula e o processo espinhoso da vértebra — essa distância deve ser simétrica; se diferir, o paciente estava rodado, o que pode alterar a aparência (inclusive o tamanho) do coração e do mediastino.',
+  },
+  {
+    id: 'anat-78',
+    subject: 'anatomia',
+    type: 'mcq',
+    question: 'Por que geralmente não se deve firmar diagnóstico de cardiomegalia a partir de uma radiografia em incidência AP (ântero-posterior)?',
+    options: ['Porque a incidência AP nunca mostra o coração', 'Porque a incidência AP amplia (magnifica) mais a silhueta cardíaca do que a incidência PA, podendo simular um coração maior do que realmente é', 'Porque a AP só é usada em crianças', 'Porque a AP não mostra o mediastino'],
+    answerIndex: 1,
+    explanation: 'A incidência AP magnifica mais a área cardíaca do que a PA (por causa da maior distância entre o coração e o filme/detector, e da geometria do feixe de raios X) — por isso um coração de tamanho normal pode parecer aumentado numa radiografia AP, tornando o diagnóstico de cardiomegalia pouco confiável nessa incidência.',
+  },
 
   // Histologia
   {

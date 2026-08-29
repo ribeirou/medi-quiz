@@ -2,7 +2,7 @@
 // Only question ids are listed here — the actual question objects live in questions.js.
 export const topicsBySubject = {
   anatomia: [
-    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38', 'anat-71', 'anat-72', 'anat-73', 'anat-74'] },
+    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38', 'anat-71', 'anat-72', 'anat-73', 'anat-74', 'anat-75', 'anat-76', 'anat-77', 'anat-78'] },
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64', 'anat-65', 'anat-66', 'anat-67', 'anat-68', 'anat-69', 'anat-70'] },
     { name: 'Sistema Nervoso', icon: '🧠', ids: ['anat-2', 'anat-11', 'anat-12', 'anat-15', 'anat-17', 'anat-18', 'anat-19', 'anat-32', 'anat-33', 'anat-36'] },
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
