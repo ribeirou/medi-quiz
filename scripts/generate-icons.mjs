@@ -52,17 +52,26 @@ function drawIcon(size, { maskable = false } = {}) {
 
   const cx = size / 2
   const cy = size / 2
-  const r = maskable ? size * 0.42 : size * 0.47
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      const dx = x - cx
-      const dy = y - cy
-      const idx = (y * size + x) * 4
-      if (dx * dx + dy * dy <= r * r) {
-        rgba[idx] = 37
-        rgba[idx + 1] = 99
-        rgba[idx + 2] = 235
-        rgba[idx + 3] = 255
+  if (maskable) {
+    for (let i = 0; i < rgba.length; i += 4) {
+      rgba[i] = 37
+      rgba[i + 1] = 99
+      rgba[i + 2] = 235
+      rgba[i + 3] = 255
+    }
+  } else {
+    const r = size * 0.47
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        const dx = x - cx
+        const dy = y - cy
+        const idx = (y * size + x) * 4
+        if (dx * dx + dy * dy <= r * r) {
+          rgba[idx] = 37
+          rgba[idx + 1] = 99
+          rgba[idx + 2] = 235
+          rgba[idx + 3] = 255
+        }
       }
     }
   }

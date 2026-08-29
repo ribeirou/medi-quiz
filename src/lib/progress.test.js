@@ -111,4 +111,19 @@ describe('spaced repetition (SRS)', () => {
 
     expect(getDueQuestions(allQuestions)).toEqual([allQuestions[0]])
   })
+
+  it('schedules the correct number of days out for each rung', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    const srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    const expected = new Date(Date.now() + 1 * 86400000).toISOString().slice(0, 10)
+    expect(srs['anat-1'].dueDate).toBe(expected)
+  })
+
+  it('getDueQuestions includes a card due exactly today', () => {
+    recordAnswer('anatomia', 'anat-1', true)
+    const srs = JSON.parse(localStorage.getItem('medi-quiz-srs'))
+    srs['anat-1'].dueDate = new Date().toISOString().slice(0, 10)
+    localStorage.setItem('medi-quiz-srs', JSON.stringify(srs))
+    expect(getDueQuestions(allQuestions)).toEqual([allQuestions[0]])
+  })
 })

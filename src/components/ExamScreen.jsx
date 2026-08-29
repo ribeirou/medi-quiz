@@ -7,25 +7,25 @@ const PRESETS_MIN = [10, 20, 30]
 export default function ExamScreen({ subject, questions, onExit }) {
   const [phase, setPhase] = useState('setup')
   const [minutes, setMinutes] = useState(null)
-  const tally = useRef({ correct: 0, total: 0 })
+  const tally = useRef(new Map())
   const startedAt = useRef(null)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [results, setResults] = useState(null)
 
-  function handleAnswer(wasCorrect) {
-    tally.current.total += 1
-    if (wasCorrect) tally.current.correct += 1
+  function handleAnswer(wasCorrect, questionId) {
+    tally.current.set(questionId, wasCorrect)
   }
 
   function handleStart() {
-    tally.current = { correct: 0, total: 0 }
+    tally.current = new Map()
     startedAt.current = Date.now()
     setPhase('running')
   }
 
   function handleExitRunning() {
     setElapsedSeconds(Math.round((Date.now() - startedAt.current) / 1000))
-    setResults({ correct: tally.current.correct, total: tally.current.total })
+    const values = [...tally.current.values()]
+    setResults({ correct: values.filter(Boolean).length, total: values.length })
     setPhase('results')
   }
 

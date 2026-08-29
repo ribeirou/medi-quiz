@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { recordAnswer, getDraft, saveDraft, getXP, getStreak, getAnsweredIds } from '../lib/progress'
@@ -10,16 +10,22 @@ export default function QuizScreen({ subject, subjects, questions, onExit, backL
   const [xp, setXp] = useState(getXP())
   const [xpPop, setXpPop] = useState(null)
   const [timeLeft, setTimeLeft] = useState(timeLimitSeconds ?? null)
+  const deadlineRef = useRef(null)
 
   useEffect(() => {
     if (timeLimitSeconds == null) return
-    if (timeLeft <= 0) {
-      onExit()
-      return
-    }
-    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000)
-    return () => clearTimeout(id)
-  }, [timeLimitSeconds, timeLeft, onExit])
+    if (deadlineRef.current == null) deadlineRef.current = Date.now() + timeLimitSeconds * 1000
+    const id = setInterval(() => {
+      const left = Math.ceil((deadlineRef.current - Date.now()) / 1000)
+      if (left <= 0) {
+        clearInterval(id)
+        onExit()
+      } else {
+        setTimeLeft(left)
+      }
+    }, 500)
+    return () => clearInterval(id)
+  }, [timeLimitSeconds, onExit])
 
   const question = questions[index]
   const activeSubject = subject || subjects.find((s) => s.id === question.subject)
@@ -65,13 +71,13 @@ export default function QuizScreen({ subject, subjects, questions, onExit, backL
     setSelected(optionIndex)
     const wasCorrect = optionIndex === question.answerIndex
     recordAnswer(activeSubject.id, question.id, wasCorrect)
-    onAnswer?.(wasCorrect)
+    onAnswer?.(wasCorrect, question.id)
     if (wasCorrect) celebrate(10)
   }
 
   function handleSelfCheck(wasCorrect) {
     recordAnswer(activeSubject.id, question.id, wasCorrect)
-    onAnswer?.(wasCorrect)
+    onAnswer?.(wasCorrect, question.id)
     setRevealed('done')
     if (wasCorrect) celebrate(10)
   }

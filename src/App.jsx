@@ -103,7 +103,7 @@ export default function App() {
         </motion.div>
       )}
 
-      {screen === 'review' && (
+      {screen === 'review' && reviewQuestions.length > 0 && (
         <motion.div
           key="review"
           initial={{ opacity: 0, x: 24 }}
@@ -120,7 +120,7 @@ export default function App() {
         </motion.div>
       )}
 
-      {screen === 'srs' && (
+      {screen === 'srs' && dueQuestions.length > 0 && (
         <motion.div
           key="srs"
           initial={{ opacity: 0, x: 24 }}
