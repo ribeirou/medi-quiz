@@ -112,6 +112,32 @@ export function getDraft(questionId) {
   return drafts[questionId] || ''
 }
 
+export function getWrongQuestions(subjectId, allQuestions) {
+  const wrongIds = getWrongIds(subjectId)
+  return allQuestions.filter((q) => q.subject === subjectId && wrongIds.includes(q.id))
+}
+
+const BACKUP_KEYS = [KEY, XP_KEY, STREAK_KEY, DRAFTS_KEY, ANSWERED_KEY, WRONG_KEY]
+
+export function exportProgress() {
+  const data = {}
+  for (const key of BACKUP_KEYS) {
+    const raw = localStorage.getItem(key)
+    if (raw !== null) data[key] = JSON.parse(raw)
+  }
+  return { version: 1, exportedAt: new Date().toISOString(), data }
+}
+
+export function importProgress(payload) {
+  if (!payload || typeof payload !== 'object' || !payload.data) return false
+  for (const key of BACKUP_KEYS) {
+    if (key in payload.data) {
+      localStorage.setItem(key, JSON.stringify(payload.data[key]))
+    }
+  }
+  return true
+}
+
 export function saveDraft(questionId, text) {
   const drafts = readJSON(DRAFTS_KEY, {})
   drafts[questionId] = text
