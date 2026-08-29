@@ -2,7 +2,7 @@
 // Only question ids are listed here — the actual question objects live in questions.js.
 export const topicsBySubject = {
   anatomia: [
-    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38'] },
+    { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38', 'anat-71', 'anat-72', 'anat-73', 'anat-74'] },
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64', 'anat-65', 'anat-66', 'anat-67', 'anat-68', 'anat-69', 'anat-70'] },
     { name: 'Sistema Nervoso', icon: '🧠', ids: ['anat-2', 'anat-11', 'anat-12', 'anat-15', 'anat-17', 'anat-18', 'anat-19', 'anat-32', 'anat-33', 'anat-36'] },
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
@@ -25,7 +25,7 @@ export const topicsBySubject = {
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['histo-40', 'histo-41', 'histo-42', 'histo-43', 'histo-44', 'histo-45', 'histo-46', 'histo-47'] },
   ],
   fisiologia: [
-    { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9'] },
+    { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9', 'fisio-80', 'fisio-81', 'fisio-82', 'fisio-83', 'fisio-84', 'fisio-85'] },
     { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50', 'fisio-55', 'fisio-56', 'fisio-57', 'fisio-58'] },
     { name: 'Farmacologia Básica', icon: '💊', ids: ['fisio-51', 'fisio-52', 'fisio-53', 'fisio-54'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
