@@ -26,7 +26,7 @@ export const topicsBySubject = {
   ],
   fisiologia: [
     { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9', 'fisio-80', 'fisio-81', 'fisio-82', 'fisio-83', 'fisio-84', 'fisio-85', 'fisio-86', 'fisio-87', 'fisio-88', 'fisio-89', 'fisio-90', 'fisio-91', 'fisio-92', 'fisio-93', 'fisio-94'] },
-    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50', 'fisio-55', 'fisio-56', 'fisio-57', 'fisio-58', 'fisio-95', 'fisio-96', 'fisio-97', 'fisio-98', 'fisio-99', 'fisio-100', 'fisio-101'] },
+    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50', 'fisio-55', 'fisio-56', 'fisio-57', 'fisio-58', 'fisio-95', 'fisio-96', 'fisio-97', 'fisio-98', 'fisio-99', 'fisio-100', 'fisio-101', 'fisio-102', 'fisio-103', 'fisio-104', 'fisio-105', 'fisio-106'] },
     { name: 'Farmacologia Básica', icon: '💊', ids: ['fisio-51', 'fisio-52', 'fisio-53', 'fisio-54'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
     { name: 'Fisiologia Neuromuscular', icon: '⚡', ids: ['fisio-1', 'fisio-13', 'fisio-14', 'fisio-15', 'fisio-17', 'fisio-39', 'fisio-40'] },
