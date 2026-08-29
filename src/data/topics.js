@@ -40,11 +40,11 @@ export const topicsBySubject = {
     { name: 'Hemostasia', icon: '🩸', ids: ['fisio-43', 'fisio-44', 'fisio-45', 'fisio-46'] },
   ],
   bioquimica: [
-    { name: 'Glicólise e Metabolismo de Carboidratos', icon: '🍬', ids: ['bioq-1', 'bioq-2', 'bioq-7', 'bioq-8', 'bioq-9', 'bioq-10'] },
+    { name: 'Glicólise e Metabolismo de Carboidratos', icon: '🍬', ids: ['bioq-1', 'bioq-2', 'bioq-7', 'bioq-8', 'bioq-9', 'bioq-10', 'bioq-40', 'bioq-41', 'bioq-42', 'bioq-43', 'bioq-44'] },
     { name: 'Ciclo de Krebs e Cadeia Respiratória', icon: '⚡', ids: ['bioq-3', 'bioq-4', 'bioq-5', 'bioq-6', 'bioq-11', 'bioq-27', 'bioq-28', 'bioq-29', 'bioq-30'] },
     { name: 'Proteínas e Enzimas', icon: '🧬', ids: ['bioq-12', 'bioq-13', 'bioq-15', 'bioq-17', 'bioq-18', 'bioq-19', 'bioq-20'] },
     { name: 'Lipídeos e Vitaminas', icon: '💊', ids: ['bioq-14', 'bioq-16', 'bioq-31', 'bioq-32', 'bioq-33', 'bioq-34', 'bioq-35', 'bioq-36', 'bioq-37', 'bioq-38', 'bioq-39'] },
-    { name: 'Ácidos Nucleicos', icon: '🧬', ids: ['bioq-21', 'bioq-22', 'bioq-23', 'bioq-24', 'bioq-25', 'bioq-26'] },
+    { name: 'Ácidos Nucleicos', icon: '🧬', ids: ['bioq-21', 'bioq-22', 'bioq-23', 'bioq-24', 'bioq-25', 'bioq-26', 'bioq-45', 'bioq-46', 'bioq-47', 'bioq-48', 'bioq-49'] },
   ],
   embriologia: [
     { name: 'Desenvolvimento Inicial', icon: '🥚', ids: ['embrio-2', 'embrio-3', 'embrio-4', 'embrio-5', 'embrio-18', 'embrio-19', 'embrio-20', 'embrio-21', 'embrio-22'] },
