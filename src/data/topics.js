@@ -53,7 +53,7 @@ export const topicsBySubject = {
     { name: 'Placenta e Gemelaridade', icon: '🤰', ids: ['embrio-7', 'embrio-14', 'embrio-15', 'embrio-26'] },
     { name: 'Sistema Cardiovascular Fetal', icon: '🫀', ids: ['embrio-12', 'embrio-13', 'embrio-17', 'embrio-27', 'embrio-28', 'embrio-29', 'embrio-30'] },
     { name: 'Sistema Respiratório', icon: '🫁', ids: ['embrio-31', 'embrio-32', 'embrio-33', 'embrio-38', 'embrio-39', 'embrio-40', 'embrio-41', 'embrio-42', 'embrio-43'] },
-    { name: 'Sistema Urogenital', icon: '🌸', ids: ['embrio-34', 'embrio-35', 'embrio-36', 'embrio-37'] },
+    { name: 'Sistema Urogenital', icon: '🌸', ids: ['embrio-34', 'embrio-35', 'embrio-36', 'embrio-37', 'embrio-44', 'embrio-45', 'embrio-46', 'embrio-47'] },
   ],
   habilidades: [
     { name: 'Sinais Vitais', icon: '🌡️', ids: ['hab-1', 'hab-2', 'hab-3', 'hab-10', 'hab-12', 'hab-24'] },

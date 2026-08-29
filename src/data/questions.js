@@ -3050,6 +3050,40 @@ export const questions = [
     answerIndex: 1,
     explanation: 'Por volta da semana 28, alvéolos precursores suficientes já amadureceram (com produção de surfactante pelos pneumócitos tipo II) para permitir trocas gasosas mínimas viáveis fora do útero — embora a maturação pulmonar completa só se conclua na infância.',
   },
+  {
+    id: 'embrio-44',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'As gônadas embrionárias, antes da diferenciação sexual, são consideradas bipotenciais porque:',
+    options: ['Já nascem definidas como testículo ou ovário', 'O mesmo tecido pode virar testículo ou ovário, dependendo de sinais genéticos', 'Não têm nenhuma função', 'Se transformam em rins depois'],
+    answerIndex: 1,
+    explanation: 'As gônadas embrionárias são bipotenciais: o mesmo grupo de células tem potencial para se desenvolver tanto em testículo quanto em ovário, dependendo de quais genes são ativados a partir daí.',
+  },
+  {
+    id: 'embrio-45',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'O gene SRY, presente no cromossomo Y, desencadeia a diferenciação testicular ao:',
+    options: ['Recrutar genes do desenvolvimento testicular e suprimir genes do desenvolvimento feminino', 'Produzir diretamente testosterona', 'Impedir a formação de qualquer gônada', 'Atuar apenas após o nascimento'],
+    answerIndex: 0,
+    explanation: 'O SRY recruta ativamente outros genes que iniciam o desenvolvimento dos testículos, e ao mesmo tempo suprime genes importantes para o desenvolvimento feminino da gônada.',
+  },
+  {
+    id: 'embrio-46',
+    subject: 'embriologia',
+    type: 'mcq',
+    question: 'Na ausência do gene SRY, a gônada bipotencial se diferencia em ovário, e as células germinativas formam:',
+    options: ['Espermatogônias', 'Oogônias e folículos primordiais', 'Túbulos seminíferos', 'Células de Leydig'],
+    answerIndex: 1,
+    explanation: 'Sem o SRY, outros genes são expressos, as células germinativas se diferenciam em oogônias, e folículos primordiais se formam no ovário em desenvolvimento.',
+  },
+  {
+    id: 'embrio-47',
+    subject: 'embriologia',
+    type: 'dissertativa',
+    question: 'Explique o papel da testosterona secretada pelas células de Leydig na diferenciação dos órgãos genitais masculinos.',
+    answer: 'Logo após a formação do testículo, as células de Leydig começam a secretar testosterona, que atua sobre tecidos bipotenciais (como os ductos de Wolff) estimulando sua diferenciação em estruturas reprodutivas masculinas. Junto com o hormônio anti-mülleriano (que causa a regressão dos ductos de Müller), a testosterona é essencial para o desenvolvimento completo da genitália interna masculina.',
+  },
 
   // Habilidades Médicas
   {
