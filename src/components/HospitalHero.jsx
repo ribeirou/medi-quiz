@@ -83,13 +83,16 @@ export default function HospitalHero({ onEnter }) {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hospital-hallway.mp4"
+          style={{ filter: 'brightness(0.5) contrast(1.2) saturate(0.75)' }}
+          src="/videos/hospital-aerial.mp4"
           muted
           loop
           playsInline
           preload="auto"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/70" />
+        <div className="absolute inset-0 bg-blue-950/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-slate-950/60" />
+        <div className="absolute inset-0 shadow-[inset_0_0_180px_80px_rgba(2,6,23,0.8)]" />
 
         {!reducedMotion && (
           <button
