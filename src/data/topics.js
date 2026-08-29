@@ -3,7 +3,7 @@
 export const topicsBySubject = {
   anatomia: [
     { name: 'Sistema Cardiovascular', icon: '🫀', ids: ['anat-5', 'anat-6', 'anat-7', 'anat-9', 'anat-10', 'anat-16', 'anat-37', 'anat-38'] },
-    { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64'] },
+    { name: 'Sistema Respiratório', icon: '🫁', ids: ['anat-8', 'anat-30', 'anat-31', 'anat-57', 'anat-58', 'anat-59', 'anat-60', 'anat-61', 'anat-62', 'anat-63', 'anat-64', 'anat-65', 'anat-66', 'anat-67', 'anat-68', 'anat-69', 'anat-70'] },
     { name: 'Sistema Nervoso', icon: '🧠', ids: ['anat-2', 'anat-11', 'anat-12', 'anat-15', 'anat-17', 'anat-18', 'anat-19', 'anat-32', 'anat-33', 'anat-36'] },
     { name: 'Sistema Digestório', icon: '🍽️', ids: ['anat-4', 'anat-13', 'anat-14', 'anat-28', 'anat-29'] },
     { name: 'Sistema Osteoarticular e Muscular', icon: '🦴', ids: ['anat-1', 'anat-3', 'anat-20', 'anat-21', 'anat-23', 'anat-24', 'anat-25', 'anat-26', 'anat-27', 'anat-34', 'anat-35', 'anat-44', 'anat-45', 'anat-46', 'anat-47', 'anat-48', 'anat-49'] },
@@ -26,7 +26,7 @@ export const topicsBySubject = {
   ],
   fisiologia: [
     { name: 'Fisiologia Cardiovascular', icon: '🫀', ids: ['fisio-2', 'fisio-7', 'fisio-8', 'fisio-9'] },
-    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50'] },
+    { name: 'Fisiologia Respiratória', icon: '🫁', ids: ['fisio-4', 'fisio-5', 'fisio-6', 'fisio-35', 'fisio-47', 'fisio-48', 'fisio-49', 'fisio-50', 'fisio-55', 'fisio-56', 'fisio-57', 'fisio-58'] },
     { name: 'Farmacologia Básica', icon: '💊', ids: ['fisio-51', 'fisio-52', 'fisio-53', 'fisio-54'] },
     { name: 'Fisiologia Renal', icon: '💧', ids: ['fisio-3', 'fisio-10', 'fisio-11', 'fisio-12'] },
     { name: 'Fisiologia Neuromuscular', icon: '⚡', ids: ['fisio-1', 'fisio-13', 'fisio-14', 'fisio-15', 'fisio-17', 'fisio-39', 'fisio-40'] },
