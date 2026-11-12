@@ -19,7 +19,7 @@
 
 ### Sobre o projeto
 
-Medi Quiz é um app de quiz de revisão feito para uma estudante de Medicina (USCS, ciclo pré-clínico). Não existe backend: todo o progresso — acertos, XP, streak, revisão espaçada — fica salvo no `localStorage` do próprio navegador. O banco de questões vem de material de estudo próprio (resumos de tutoria/aula) e de fontes abertas com licença livre (OpenStax), nunca de livros-texto comerciais.
+Medi Quiz é um app de quiz de revisão feito para uma estudante de Medicina (ciclo pré-clínico). Não existe backend: todo o progresso — acertos, XP, streak, revisão espaçada — fica salvo no `localStorage` do próprio navegador. O banco de questões vem de material de estudo próprio (resumos de tutoria/aula) e de fontes abertas com licença livre (OpenStax), nunca de livros-texto comerciais.
 
 ### Funcionalidades
 
